@@ -1,0 +1,710 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>图书馆座位预约系统</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    <style>
+      :root {
+        --bg-0: #f4f8fb;
+        --bg-1: #e7eef6;
+        --ink-0: #0d2438;
+        --ink-1: #3b5368;
+        --brand: #0f766e;
+        --brand-soft: #d1fae5;
+        --accent: #f59e0b;
+        --danger: #dc2626;
+        --card: rgba(255, 255, 255, 0.84);
+        --line: rgba(13, 36, 56, 0.12);
+        --shadow: 0 14px 34px rgba(13, 36, 56, 0.12);
+        --radius-lg: 20px;
+        --radius-md: 14px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Plus Jakarta Sans", "Noto Sans SC", "Segoe UI", sans-serif;
+        color: var(--ink-0);
+        background:
+          radial-gradient(circle at 0% 10%, #d8f8f0 0%, transparent 45%),
+          radial-gradient(circle at 100% 0%, #ffecc8 0%, transparent 35%),
+          linear-gradient(160deg, var(--bg-0), var(--bg-1));
+        min-height: 100dvh;
+      }
+
+      .app-shell {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 24px;
+        display: grid;
+        gap: 20px;
+      }
+
+      .header-card,
+      .page-card,
+      .side-card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(9px);
+      }
+
+      .header-card {
+        padding: 18px 20px;
+        display: grid;
+        gap: 14px;
+      }
+
+      .brand-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .brand-title {
+        margin: 0;
+        font-weight: 800;
+        font-size: 26px;
+        letter-spacing: 0.2px;
+      }
+
+      .brand-sub {
+        margin: 4px 0 0;
+        color: var(--ink-1);
+        font-size: 14px;
+      }
+
+      .pill {
+        background: #ffffff;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 7px 12px;
+        font-weight: 600;
+        font-size: 13px;
+      }
+
+      .tab-row {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .tab-btn {
+        border: 1px solid var(--line);
+        background: #fff;
+        color: var(--ink-1);
+        border-radius: 12px;
+        min-height: 46px;
+        padding: 10px 8px;
+        font-weight: 700;
+        font-size: 14px;
+        cursor: pointer;
+        transition: 0.22s ease;
+      }
+
+      .tab-btn:hover {
+        transform: translateY(-1px);
+      }
+
+      .tab-btn.active {
+        background: var(--brand);
+        color: #fff;
+        border-color: transparent;
+      }
+
+      .content-grid {
+        display: grid;
+        grid-template-columns: 1.3fr 0.7fr;
+        gap: 20px;
+        align-items: start;
+      }
+
+      .page-card {
+        padding: 20px;
+        display: grid;
+        gap: 16px;
+      }
+
+      .side-card {
+        padding: 18px;
+        display: grid;
+        gap: 14px;
+      }
+
+      .section-title {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 800;
+      }
+
+      .section-sub {
+        margin: 6px 0 0;
+        color: var(--ink-1);
+        font-size: 14px;
+      }
+
+      .stats-row {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .stat {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        padding: 12px;
+      }
+
+      .stat-label {
+        color: var(--ink-1);
+        font-size: 12px;
+      }
+
+      .stat-value {
+        margin-top: 4px;
+        font-size: 20px;
+        font-weight: 800;
+      }
+
+      .seat-grid {
+        display: grid;
+        gap: 10px;
+      }
+
+      .seat-row {
+        display: grid;
+        grid-template-columns: 36px repeat(8, minmax(0, 1fr));
+        gap: 8px;
+        align-items: center;
+      }
+
+      .row-code {
+        text-align: center;
+        font-weight: 700;
+        color: var(--ink-1);
+      }
+
+      .seat {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        min-height: 52px;
+        padding: 6px;
+        background: #fff;
+        cursor: pointer;
+        display: grid;
+        place-items: center;
+        gap: 2px;
+        font-size: 12px;
+        transition: 0.2s ease;
+      }
+
+      .seat:hover {
+        transform: translateY(-2px);
+      }
+
+      .seat.available {
+        background: #f0fdf4;
+        border-color: #86efac;
+        color: #166534;
+      }
+
+      .seat.booked {
+        background: #fef3c7;
+        border-color: #fcd34d;
+        color: #92400e;
+      }
+
+      .seat.maintenance {
+        background: #fee2e2;
+        border-color: #fca5a5;
+        color: #991b1b;
+      }
+
+      .seat.selected {
+        outline: 2px solid var(--brand);
+        transform: translateY(-1px) scale(1.01);
+      }
+
+      .legend {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .legend-item {
+        border: 1px solid var(--line);
+        background: #fff;
+        border-radius: 999px;
+        padding: 6px 10px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .field {
+        display: grid;
+        gap: 6px;
+      }
+
+      .field label {
+        font-size: 13px;
+        color: var(--ink-1);
+        font-weight: 600;
+      }
+
+      .field input,
+      .field select,
+      .field textarea {
+        min-height: 44px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 10px 12px;
+        font-size: 14px;
+        font-family: inherit;
+        background: #fff;
+      }
+
+      .field textarea {
+        min-height: 92px;
+        resize: vertical;
+      }
+
+      .span-2 {
+        grid-column: span 2;
+      }
+
+      .btn-row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        border: none;
+        border-radius: 10px;
+        min-height: 44px;
+        padding: 0 18px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .btn.primary {
+        background: var(--brand);
+        color: #fff;
+      }
+
+      .btn.ghost {
+        background: #fff;
+        color: var(--ink-0);
+        border: 1px solid var(--line);
+      }
+
+      .btn.warn {
+        background: var(--danger);
+        color: #fff;
+      }
+
+      .booking-list {
+        display: grid;
+        gap: 10px;
+      }
+
+      .booking-card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 12px;
+        display: grid;
+        gap: 8px;
+      }
+
+      .booking-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .tag {
+        background: var(--brand-soft);
+        color: #065f46;
+        font-weight: 700;
+        font-size: 12px;
+        border-radius: 999px;
+        padding: 4px 9px;
+      }
+
+      .empty {
+        border: 1px dashed var(--line);
+        border-radius: 12px;
+        background: #ffffff88;
+        padding: 16px;
+        color: var(--ink-1);
+        font-size: 14px;
+      }
+
+      .divider {
+        height: 1px;
+        background: var(--line);
+      }
+
+      @media (max-width: 980px) {
+        .content-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .tab-row {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 680px) {
+        .app-shell {
+          padding: 14px;
+        }
+
+        .page-card,
+        .side-card {
+          padding: 14px;
+        }
+
+        .brand-title {
+          font-size: 22px;
+        }
+
+        .stats-row,
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .span-2 {
+          grid-column: span 1;
+        }
+
+        .seat-row {
+          grid-template-columns: 26px repeat(4, minmax(0, 1fr));
+        }
+
+        .seat-row .seat:nth-child(n + 6) {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script>
+      const { createApp, computed } = Vue;
+
+      const buildInitialSeats = () => {
+        const rows = ["A", "B", "C", "D", "E", "F"];
+        const initial = [];
+        rows.forEach((r) => {
+          for (let i = 1; i <= 8; i += 1) {
+            let status = "available";
+            if ((r === "A" && i === 8) || (r === "D" && i === 4)) status = "maintenance";
+            if ((r === "B" && i === 2) || (r === "C" && i === 6) || (r === "F" && i === 1)) status = "booked";
+            initial.push({
+              id: `${r}-${i}`,
+              row: r,
+              col: i,
+              zone: i <= 4 ? "安静区" : "讨论区",
+              status,
+              hasPower: i % 2 === 0
+            });
+          }
+        });
+        return initial;
+      };
+
+      createApp({
+        data() {
+          return {
+            activeTab: "booking",
+            selectedSeatId: "",
+            bookingForm: {
+              userName: "",
+              date: "",
+              timeSlot: "08:00-10:00",
+              purpose: ""
+            },
+            timeSlots: [
+              "08:00-10:00",
+              "10:00-12:00",
+              "13:00-15:00",
+              "15:00-17:00",
+              "18:00-20:00"
+            ],
+            seats: buildInitialSeats(),
+            bookings: []
+          };
+        },
+        computed: {
+          totalSeats() {
+            return this.seats.length;
+          },
+          availableSeats() {
+            return this.seats.filter((s) => s.status === "available").length;
+          },
+          bookedSeats() {
+            return this.seats.filter((s) => s.status === "booked").length;
+          },
+          selectedSeat() {
+            return this.seats.find((s) => s.id === this.selectedSeatId) || null;
+          }
+        },
+        methods: {
+          seatLabel(status) {
+            if (status === "available") return "可约";
+            if (status === "booked") return "已约";
+            return "维护";
+          },
+          selectSeat(seat) {
+            this.selectedSeatId = seat.id;
+          },
+          resetForm() {
+            this.bookingForm = {
+              userName: "",
+              date: "",
+              timeSlot: "08:00-10:00",
+              purpose: ""
+            };
+          },
+          submitBooking() {
+            if (!this.selectedSeat || this.selectedSeat.status !== "available") {
+              alert("请先选择一个可预约的座位。");
+              return;
+            }
+            if (!this.bookingForm.userName || !this.bookingForm.date) {
+              alert("请填写预约人和预约日期。");
+              return;
+            }
+
+            const newBooking = {
+              id: `BK-${Date.now()}`,
+              seatId: this.selectedSeat.id,
+              userName: this.bookingForm.userName,
+              date: this.bookingForm.date,
+              timeSlot: this.bookingForm.timeSlot,
+              purpose: this.bookingForm.purpose || "自习",
+              createdAt: new Date().toLocaleString("zh-CN")
+            };
+
+            this.bookings.unshift(newBooking);
+            this.selectedSeat.status = "booked";
+            this.activeTab = "bookingInfo";
+            this.resetForm();
+          },
+          cancelBooking(booking) {
+            const seat = this.seats.find((s) => s.id === booking.seatId);
+            if (seat && seat.status === "booked") {
+              seat.status = "available";
+            }
+            this.bookings = this.bookings.filter((b) => b.id !== booking.id);
+          }
+        },
+        template: `
+          <main class="app-shell">
+            <section class="header-card">
+              <div class="brand-row">
+                <div>
+                  <h1 class="brand-title">图书馆座位预约系统</h1>
+                  <p class="brand-sub">卡片化信息布局 + 移动端适配 + Vue 交互演示</p>
+                </div>
+                <div class="pill">今日预约：{{ bookings.length }} 条</div>
+              </div>
+              <div class="tab-row">
+                <button class="tab-btn" :class="{ active: activeTab === 'booking' }" @click="activeTab = 'booking'">预约页面</button>
+                <button class="tab-btn" :class="{ active: activeTab === 'layout' }" @click="activeTab = 'layout'">座位排列</button>
+                <button class="tab-btn" :class="{ active: activeTab === 'seatInfo' }" @click="activeTab = 'seatInfo'">座位信息</button>
+                <button class="tab-btn" :class="{ active: activeTab === 'bookingInfo' }" @click="activeTab = 'bookingInfo'">预约信息</button>
+              </div>
+            </section>
+
+            <div class="content-grid">
+              <section class="page-card">
+                <template v-if="activeTab === 'booking'">
+                  <div>
+                    <h2 class="section-title">预约页面</h2>
+                    <p class="section-sub">先选座，再填写预约人、时间与用途。</p>
+                  </div>
+                  <div class="legend">
+                    <span class="legend-item">可约</span>
+                    <span class="legend-item">已约</span>
+                    <span class="legend-item">维护</span>
+                  </div>
+                  <div class="seat-grid">
+                    <div class="seat-row" v-for="row in ['A','B','C','D','E','F']" :key="row">
+                      <div class="row-code">{{ row }}</div>
+                      <button
+                        v-for="seat in seats.filter(s => s.row === row)"
+                        :key="seat.id"
+                        class="seat"
+                        :class="[seat.status, { selected: selectedSeatId === seat.id }]"
+                        @click="selectSeat(seat)"
+                      >
+                        <strong>{{ seat.id }}</strong>
+                        <span>{{ seatLabel(seat.status) }}</span>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="divider"></div>
+                  <div class="form-grid">
+                    <div class="field">
+                      <label>预约人</label>
+                      <input v-model.trim="bookingForm.userName" placeholder="请输入姓名" />
+                    </div>
+                    <div class="field">
+                      <label>预约日期</label>
+                      <input v-model="bookingForm.date" type="date" />
+                    </div>
+                    <div class="field">
+                      <label>时段</label>
+                      <select v-model="bookingForm.timeSlot">
+                        <option v-for="slot in timeSlots" :key="slot" :value="slot">{{ slot }}</option>
+                      </select>
+                    </div>
+                    <div class="field">
+                      <label>已选座位</label>
+                      <input :value="selectedSeat ? selectedSeat.id : '未选择'" readonly />
+                    </div>
+                    <div class="field span-2">
+                      <label>用途说明</label>
+                      <textarea v-model.trim="bookingForm.purpose" placeholder="如：备考、小组讨论、查阅资料"></textarea>
+                    </div>
+                  </div>
+                  <div class="btn-row">
+                    <button class="btn primary" @click="submitBooking">确认预约</button>
+                    <button class="btn ghost" @click="resetForm">清空表单</button>
+                  </div>
+                </template>
+
+                <template v-else-if="activeTab === 'layout'">
+                  <div>
+                    <h2 class="section-title">座位排列页面</h2>
+                    <p class="section-sub">楼层 A-F 排列展示，点击任意座位可联动右侧详情。</p>
+                  </div>
+                  <div class="seat-grid">
+                    <div class="seat-row" v-for="row in ['A','B','C','D','E','F']" :key="'layout-' + row">
+                      <div class="row-code">{{ row }}</div>
+                      <button
+                        v-for="seat in seats.filter(s => s.row === row)"
+                        :key="seat.id"
+                        class="seat"
+                        :class="[seat.status, { selected: selectedSeatId === seat.id }]"
+                        @click="selectSeat(seat)"
+                      >
+                        <strong>{{ seat.id }}</strong>
+                        <span>{{ seat.zone }}</span>
+                      </button>
+                    </div>
+                  </div>
+                </template>
+
+                <template v-else-if="activeTab === 'seatInfo'">
+                  <div>
+                    <h2 class="section-title">座位信息页面</h2>
+                    <p class="section-sub">查看选中座位属性、电源情况与状态说明。</p>
+                  </div>
+                  <div class="stats-row">
+                    <article class="stat">
+                      <div class="stat-label">总座位</div>
+                      <div class="stat-value">{{ totalSeats }}</div>
+                    </article>
+                    <article class="stat">
+                      <div class="stat-label">可预约</div>
+                      <div class="stat-value">{{ availableSeats }}</div>
+                    </article>
+                    <article class="stat">
+                      <div class="stat-label">已预约</div>
+                      <div class="stat-value">{{ bookedSeats }}</div>
+                    </article>
+                  </div>
+                  <article class="booking-card" v-if="selectedSeat">
+                    <div class="booking-head">
+                      <strong>座位 {{ selectedSeat.id }}</strong>
+                      <span class="tag">{{ seatLabel(selectedSeat.status) }}</span>
+                    </div>
+                    <div>区域：{{ selectedSeat.zone }}</div>
+                    <div>电源：{{ selectedSeat.hasPower ? '支持插座' : '无插座' }}</div>
+                    <div>列号：{{ selectedSeat.col }}</div>
+                  </article>
+                  <div class="empty" v-else>请在“预约页面”或“座位排列”中先点选一个座位。</div>
+                </template>
+
+                <template v-else>
+                  <div>
+                    <h2 class="section-title">预约信息页面</h2>
+                    <p class="section-sub">展示当前预约记录，可执行取消操作。</p>
+                  </div>
+                  <div class="booking-list" v-if="bookings.length">
+                    <article class="booking-card" v-for="booking in bookings" :key="booking.id">
+                      <div class="booking-head">
+                        <strong>{{ booking.userName }} · {{ booking.seatId }}</strong>
+                        <span class="tag">{{ booking.timeSlot }}</span>
+                      </div>
+                      <div>日期：{{ booking.date }}</div>
+                      <div>用途：{{ booking.purpose }}</div>
+                      <div>创建时间：{{ booking.createdAt }}</div>
+                      <div class="btn-row">
+                        <button class="btn warn" @click="cancelBooking(booking)">取消预约</button>
+                      </div>
+                    </article>
+                  </div>
+                  <div class="empty" v-else>暂无预约记录，去“预约页面”创建第一条预约吧。</div>
+                </template>
+              </section>
+
+              <aside class="side-card">
+                <h3 class="section-title">实时概览</h3>
+                <article class="stat">
+                  <div class="stat-label">当前选中</div>
+                  <div class="stat-value" style="font-size: 18px;">
+                    {{ selectedSeat ? selectedSeat.id : '未选择' }}
+                  </div>
+                </article>
+                <article class="stat">
+                  <div class="stat-label">状态</div>
+                  <div class="stat-value" style="font-size: 18px;">
+                    {{ selectedSeat ? seatLabel(selectedSeat.status) : '无' }}
+                  </div>
+                </article>
+                <article class="stat">
+                  <div class="stat-label">最近一条预约</div>
+                  <div style="font-size: 14px; margin-top: 6px; color: var(--ink-1);">
+                    {{ bookings[0] ? bookings[0].userName + ' · ' + bookings[0].seatId : '暂无记录' }}
+                  </div>
+                </article>
+                <div class="empty">
+                  提示：移动端下页面会自动切换为单列卡片布局，保留完整功能。
+                </div>
+              </aside>
+            </div>
+          </main>
+        `
+      }).mount("#app");
+    </script>
+  </body>
+</html>

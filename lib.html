@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>图书馆座位预约系统</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+<div id="app" class="min-h-screen font-sans">
+
+  <!-- 登录界面 -->
+  <div v-if="!user" class="flex items-center justify-center min-h-screen">
+    <div class="bg-white p-6 rounded-xl shadow w-80">
+      <h2 class="text-xl font-semibold mb-4 text-center">系统登录</h2>
+      <input v-model="loginForm.username" placeholder="用户名" class="w-full mb-3 p-2 border rounded" />
+      <input v-model="loginForm.password" type="password" placeholder="密码" class="w-full mb-4 p-2 border rounded" />
+      <div class="flex gap-2">
+        <button @click="login('student')" class="flex-1 bg-blue-600 text-white py-2 rounded">学生登录</button>
+        <button @click="login('admin')" class="flex-1 bg-gray-700 text-white py-2 rounded">管理员</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 主界面 -->
+  <div v-else class="p-4">
+    <!-- 顶部栏 -->
+    <div class="flex justify-between items-center mb-4">
+      <div>
+        <span class="font-semibold">{{ user.role==='admin'?'管理员':'学生' }}：</span>{{ user.username }}
+      </div>
+      <button @click="logout" class="text-sm text-red-500">退出登录</button>
+    </div>
+
+    <!-- 管理员视角 -->
+    <div v-if="user.role==='admin'" class="mb-6 bg-white p-4 rounded shadow">
+      <h3 class="font-semibold mb-2">管理员面板</h3>
+      <p class="text-sm text-gray-600">查看所有座位预约状态（只读）</p>
+    </div>
+
+    <!-- 教室布局 -->
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-lg font-semibold mb-3 text-center">一楼自习室 A 区</h2>
+      <div class="grid grid-cols-6 gap-3">
+        <div v-for="seat in seats" :key="seat.id"
+          @click="openSeat(seat)"
+          class="p-3 rounded-lg text-center text-sm cursor-pointer shadow"
+          :class="seatClass(seat)">
+          <div>座位 {{ seat.id }}</div>
+          <div class="text-xs">{{ seatStatusText(seat) }}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 座位详情弹窗 -->
+    <div v-if="dialog.visible" class="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+      <div class="bg-white p-5 rounded-xl w-96">
+        <h3 class="font-semibold mb-2">座位 {{ dialog.seat.id }} 预约情况</h3>
+
+        <div class="mb-3 text-sm">
+          <div v-for="r in dialog.seat.reservations" :key="r.time" class="flex justify-between border-b py-1">
+            <span>{{ r.time }}</span>
+            <span>{{ r.user || '空闲' }}</span>
+          </div>
+        </div>
+
+        <div v-if="user.role==='student'">
+          <label class="text-sm">选择预约时段</label>
+          <select v-model="selectedTime" class="w-full border p-2 rounded mt-1 mb-3">
+            <option v-for="t in times" :key="t">{{ t }}</option>
+          </select>
+
+          <button v-if="canReserve(dialog.seat)" @click="reserveSeat" class="w-full bg-blue-600 text-white py-2 rounded mb-2">预约</button>
+          <button v-if="isMySeat(dialog.seat)" @click="leaveSeat" class="w-full bg-yellow-500 text-white py-2 rounded mb-2">暂离（{{ leaveCountdown }}s）</button>
+        </div>
+
+        <button @click="dialog.visible=false" class="w-full bg-gray-400 text-white py-2 rounded">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const { createApp } = Vue;
+
+createApp({
+  data(){
+    return {
+      user:null,
+      loginForm:{username:'',password:''},
+      seats: Array.from({length:24},(_,i)=>({
+        id:i+1,
+        owner:null,
+        away:false,
+        reservations:[
+          {time:'08:00-10:00',user:null},
+          {time:'10:00-12:00',user:null},
+          {time:'14:00-18:00',user:null}
+        ]
+      })),
+      dialog:{visible:false,seat:null},
+      times:['08:00-10:00','10:00-12:00','14:00-18:00'],
+      selectedTime:'08:00-10:00',
+      leaveCountdown:0,
+      timer:null
+    }
+  },
+  methods:{
+    login(role){
+      this.user={username:this.loginForm.username||role,role}
+    },
+    logout(){this.user=null},
+    openSeat(seat){this.dialog={visible:true,seat}},
+    reserveSeat(){
+      const r=this.dialog.seat.reservations.find(r=>r.time===this.selectedTime)
+      if(r && !r.user){r.user=this.user.username;this.dialog.seat.owner=this.user.username}
+    },
+    canReserve(seat){
+      const r=seat.reservations.find(r=>r.time===this.selectedTime)
+      return r && !r.user
+    },
+    isMySeat(seat){return seat.owner===this.user.username},
+    leaveSeat(){
+      this.leaveCountdown=60;
+      clearInterval(this.timer);
+      this.timer=setInterval(()=>{
+        this.leaveCountdown--;
+        if(this.leaveCountdown<=0){clearInterval(this.timer)}
+      },1000)
+    },
+    seatStatusText(seat){
+      if(seat.owner===this.user?.username) return '我的座位';
+      return seat.owner? '已预约':'空闲';
+    },
+    seatClass(seat){
+      if(seat.owner===this.user?.username) return 'bg-green-300 border-2 border-green-600';
+      if(seat.owner) return 'bg-blue-200';
+      return 'bg-white hover:bg-blue-50';
+    }
+  }
+}).mount('#app')
+</script>
+</body>
+</html>
