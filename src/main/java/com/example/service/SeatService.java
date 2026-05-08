@@ -45,6 +45,12 @@ public class SeatService {
     @Autowired
     private SeatViewCacheService seatViewCacheService;
 
+    @Autowired
+    private com.example.repository.UserRepository userRepository;
+
+    @Autowired
+    private com.example.repository.SystemConfigRepository systemConfigRepository;
+
     public List<Seat> getAllSeats() {
         return getAllSeats(null, null);
     }
@@ -191,6 +197,19 @@ public class SeatService {
         for (SeatBooking booking : expiredBookings) {
             booking.setStatus(STATUS_EXPIRED);
             seatBookingRepository.save(booking);
+            // 未打卡的过期预约 → 用户 totalBookings+1 (无效预约)
+            if (!Boolean.TRUE.equals(booking.getCheckedIn())) {
+                String uid = booking.getUserId();
+                if (uid != null) {
+                    try {
+                        com.example.entity.User user = userRepository.findById(Long.parseLong(uid)).orElse(null);
+                        if (user != null) {
+                            user.setTotalBookings(user.getTotalBookings() + 1);
+                            userRepository.save(user);
+                        }
+                    } catch (NumberFormatException ignored) {}
+                }
+            }
             affectedSeatIds.add(booking.getSeatId());
         }
 
@@ -441,6 +460,74 @@ public class SeatService {
 
     public Long getUsedSeatCount() {
         return seatRepository.countByStatus(STATUS_USED);
+    }
+
+    public Map<String, Object> checkin(Long bookingId, String userId) {
+        Map<String, Object> response = new HashMap<>();
+
+        SeatBooking booking = seatBookingRepository.findById(bookingId).orElse(null);
+        if (booking == null) {
+            response.put("success", false);
+            response.put("message", "预约记录不存在");
+            return response;
+        }
+
+        if (!booking.getUserId().equals(userId)) {
+            response.put("success", false);
+            response.put("message", "该预约不属于当前用户");
+            return response;
+        }
+
+        if (!"BOOKED".equals(booking.getStatus())) {
+            response.put("success", false);
+            response.put("message", "该预约状态不允许打卡");
+            return response;
+        }
+
+        LocalTime now = LocalTime.now();
+        if (now.isBefore(booking.getStartTime()) || now.isAfter(booking.getEndTime())) {
+            response.put("success", false);
+            response.put("message", "不在打卡时间范围内（" + booking.getStartTime() + " - " + booking.getEndTime() + "）");
+            return response;
+        }
+
+        booking.setCheckedIn(true);
+        seatBookingRepository.save(booking);
+
+        com.example.entity.User user = userRepository.findById(Long.parseLong(userId)).orElse(null);
+        if (user != null) {
+            user.setTotalBookings(user.getTotalBookings() + 1);
+            user.setValidBookings(user.getValidBookings() + 1);
+            userRepository.save(user);
+        }
+
+        response.put("success", true);
+        response.put("message", "打卡成功");
+        return response;
+    }
+
+    public Map<String, Object> getUserIntegrity(Long userId) {
+        Map<String, Object> result = new HashMap<>();
+
+        com.example.entity.User user = userRepository.findById(userId).orElse(null);
+        if (user == null) {
+            result.put("totalBookings", 0);
+            result.put("validBookings", 0);
+            result.put("invalidBookings", 0);
+            result.put("integrityScore", 1.0);
+            return result;
+        }
+
+        int total = user.getTotalBookings();
+        int valid = user.getValidBookings();
+        int invalid = total - valid;
+        double score = total > 0 ? (double) valid / total : 1.0;
+
+        result.put("totalBookings", total);
+        result.put("validBookings", valid);
+        result.put("invalidBookings", invalid);
+        result.put("integrityScore", Math.round(score * 10000.0) / 10000.0);
+        return result;
     }
 
     public void initializeSeats() {
