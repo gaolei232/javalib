@@ -478,6 +478,12 @@ public class SeatService {
             return response;
         }
 
+        if (Boolean.TRUE.equals(booking.getCheckedIn())) {
+            response.put("success", false);
+            response.put("message", "该预约已打卡，无需重复打卡");
+            return response;
+        }
+
         if (!"BOOKED".equals(booking.getStatus())) {
             response.put("success", false);
             response.put("message", "该预约状态不允许打卡");
@@ -494,12 +500,14 @@ public class SeatService {
         booking.setCheckedIn(true);
         seatBookingRepository.save(booking);
 
-        com.example.entity.User user = userRepository.findById(Long.parseLong(userId)).orElse(null);
-        if (user != null) {
-            user.setTotalBookings(user.getTotalBookings() + 1);
-            user.setValidBookings(user.getValidBookings() + 1);
-            userRepository.save(user);
-        }
+        try {
+            com.example.entity.User user = userRepository.findById(Long.parseLong(userId)).orElse(null);
+            if (user != null) {
+                user.setTotalBookings(user.getTotalBookings() + 1);
+                user.setValidBookings(user.getValidBookings() + 1);
+                userRepository.save(user);
+            }
+        } catch (NumberFormatException ignored) {}
 
         response.put("success", true);
         response.put("message", "打卡成功");
