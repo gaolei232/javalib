@@ -68,4 +68,15 @@ public class AuthController {
         return ResponseEntity.ok(response);
     }
 
+    @PostMapping("/change-password")
+    public ResponseEntity<Map<String, Object>> changePassword(
+            @RequestHeader(value = "Authorization", required = false) String authorizationHeader,
+            @RequestBody Map<String, String> request) {
+        String oldPassword = request.get("oldPassword");
+        String newPassword = request.get("newPassword");
+        Map<String, Object> response = authService.changePassword(authorizationHeader, oldPassword, newPassword);
+        boolean success = Boolean.TRUE.equals(response.get("success"));
+        return success ? ResponseEntity.ok(response) : ResponseEntity.badRequest().body(response);
+    }
+
 }
