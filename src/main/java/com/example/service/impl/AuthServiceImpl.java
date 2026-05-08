@@ -142,6 +142,51 @@ public class AuthServiceImpl implements AuthService {
         return response;
     }
 
+    @Override
+    public Map<String, Object> changePassword(String authorizationHeader, String oldPassword, String newPassword) {
+        Map<String, Object> response = new HashMap<>();
+        Long userId = extractUserIdFromAuthorizationHeader(authorizationHeader);
+
+        if (userId == null) {
+            response.put("success", false);
+            response.put("message", "未登录或token无效");
+            return response;
+        }
+
+        User user = userService.getUserById(userId);
+        if (user == null) {
+            response.put("success", false);
+            response.put("message", "用户不存在");
+            return response;
+        }
+
+        if (oldPassword == null || newPassword == null || newPassword.isBlank()) {
+            response.put("success", false);
+            response.put("message", "密码不能为空");
+            return response;
+        }
+
+        // Verify old password using userService.login (which checks BCrypt)
+        User verified = userService.login(user.getEmail(), oldPassword);
+        if (verified == null) {
+            response.put("success", false);
+            response.put("message", "原密码错误");
+            return response;
+        }
+
+        // Update password — UserServiceImpl.updateUser will encode it
+        User updateUser = new User();
+        updateUser.setName(user.getName());
+        updateUser.setEmail(user.getEmail());
+        updateUser.setPassword(newPassword);
+        updateUser.setRole(user.getRole());
+        userService.updateUser(userId, updateUser);
+
+        response.put("success", true);
+        response.put("message", "密码修改成功");
+        return response;
+    }
+
     private String generateToken(User user) {
         return "user-" + user.getId() + "-" + UUID.randomUUID();
     }

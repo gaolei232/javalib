@@ -22,4 +22,6 @@ public interface AuthService {
 
     Map<String, Object> resetPassword(String token, String password);
 
+    Map<String, Object> changePassword(String authorizationHeader, String oldPassword, String newPassword);
+
 }
