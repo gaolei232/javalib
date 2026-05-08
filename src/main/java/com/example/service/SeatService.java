@@ -180,6 +180,8 @@ public class SeatService {
             }
         }
 
+        seatRepository.saveAll(seats);
+
         seatViewCacheService.put(date, currentUserId, normalizedBuildingCode, normalizedFloorNo, seats);
         return seats;
     }

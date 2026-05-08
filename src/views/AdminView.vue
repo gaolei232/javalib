@@ -520,7 +520,7 @@ async function initializeSeats() {
 async function loadSeats() {
   const rt = ++latestSeatListRequestToken
   try {
-    const all = await seatApi.getAllSeats(null, null, seatBuildingFilter.value, seatFloorFilter.value)
+    const all = await seatApi.getAllSeats(new Date().toISOString().split('T')[0], null, seatBuildingFilter.value, seatFloorFilter.value)
     if (rt !== latestSeatListRequestToken) return
     const norm = Array.isArray(all) ? all : []
     seats.value = dedupeSeatsByPosition(norm.filter(isSeatInSelectedLocation))
