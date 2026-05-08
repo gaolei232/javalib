@@ -2,6 +2,8 @@ package com.example.controller;
 
 import com.example.entity.Seat;
 import com.example.entity.SeatBooking;
+import com.example.entity.SystemConfig;
+import com.example.repository.SystemConfigRepository;
 import com.example.service.SeatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +23,9 @@ public class SeatController {
 
     @Autowired
     private SeatService seatService;
+
+    @Autowired
+    private SystemConfigRepository systemConfigRepository;
 
     @GetMapping
     public ResponseEntity<List<Seat>> getAllSeats(
@@ -156,6 +161,18 @@ public class SeatController {
             LocalTime parsedStartTime = LocalTime.parse(startTime);
             LocalTime parsedEndTime = LocalTime.parse(endTime);
 
+            // 诚信指数检查
+            Map<String, Object> integrity = seatService.getUserIntegrity(Long.parseLong(userId));
+            SystemConfig thresholdConfig = systemConfigRepository.findByConfigKey("integrity_threshold");
+            double threshold = thresholdConfig != null ? Double.parseDouble(thresholdConfig.getConfigValue()) : 0.6;
+            double userScore = ((Number) integrity.get("integrityScore")).doubleValue();
+
+            if (userScore < threshold) {
+                response.put("success", false);
+                response.put("message", "您的诚信指数过低（" + Math.round(userScore * 100) + "%），无法预约，诚信阈值：" + Math.round(threshold * 100) + "%");
+                return ResponseEntity.ok(response);
+            }
+
             boolean success = seatService.bookSeatWithDuration(
                     seatId,
                     userId,
@@ -229,6 +246,15 @@ public class SeatController {
             response.put("message", "日期或时间格式错误");
             return ResponseEntity.badRequest().body(response);
         }
+    }
+
+    @PostMapping("/checkin/{bookingId}")
+    public ResponseEntity<Map<String, Object>> checkin(
+            @PathVariable Long bookingId,
+            @RequestParam String userId) {
+        Map<String, Object> response = seatService.checkin(bookingId, userId);
+        boolean success = Boolean.TRUE.equals(response.get("success"));
+        return success ? ResponseEntity.ok(response) : ResponseEntity.badRequest().body(response);
     }
 
     @PostMapping("/{seatId}/reset")
