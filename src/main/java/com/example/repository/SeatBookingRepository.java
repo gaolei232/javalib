@@ -2,6 +2,8 @@ package com.example.repository;
 
 import com.example.entity.SeatBooking;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
@@ -49,4 +51,12 @@ public interface SeatBookingRepository extends JpaRepository<SeatBooking, Long> 
     );
 
     Long countByStatus(String status);
+
+    @Query("SELECT COUNT(b) FROM SeatBooking b WHERE b.userId = :userId AND b.status IN ('BOOKED', 'EXPIRED')")
+    Long countTotalFinishedByUserId(@Param("userId") String userId);
+
+    @Query("SELECT COUNT(b) FROM SeatBooking b WHERE b.userId = :userId AND b.checkedIn = true")
+    Long countCheckedInByUserId(@Param("userId") String userId);
+
+    List<SeatBooking> findByUserIdOrderByCreatedAtDesc(String userId);
 }

@@ -40,6 +40,9 @@ public class SeatBooking {
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
+    @Column(name = "checked_in", nullable = false)
+    private Boolean checkedIn = false;
+
     @PrePersist
     protected void onCreate() {
         LocalDateTime now = LocalDateTime.now();
@@ -135,4 +138,7 @@ public class SeatBooking {
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
+
+    public Boolean getCheckedIn() { return checkedIn; }
+    public void setCheckedIn(Boolean checkedIn) { this.checkedIn = checkedIn; }
 }
