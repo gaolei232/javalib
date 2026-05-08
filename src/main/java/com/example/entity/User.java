@@ -27,6 +27,17 @@ public class User {
     @Column(name = "updated_at")
     private java.time.LocalDateTime updatedAt;
 
+    @Column(name = "total_bookings", nullable = false)
+    private int totalBookings = 0;
+
+    @Column(name = "valid_bookings", nullable = false)
+    private int validBookings = 0;
+
+    public int getTotalBookings() { return totalBookings; }
+    public void setTotalBookings(int totalBookings) { this.totalBookings = totalBookings; }
+    public int getValidBookings() { return validBookings; }
+    public void setValidBookings(int validBookings) { this.validBookings = validBookings; }
+
     @PrePersist
     protected void onCreate() {
         createdAt = java.time.LocalDateTime.now();
