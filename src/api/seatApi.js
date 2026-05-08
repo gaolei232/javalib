@@ -221,6 +221,19 @@ export const deleteSeat = async (id) => {
   }
 }
 
+// 打卡
+export const checkin = async (bookingId, userId) => {
+  try {
+    const response = await axios.post(`${API_BASE_URL}/seats/checkin/${bookingId}`, null, {
+      params: { userId }
+    })
+    return response.data
+  } catch (error) {
+    console.error('打卡失败:', error)
+    throw error
+  }
+}
+
 const getAuthToken = () =>
   localStorage.getItem('token') || sessionStorage.getItem('token') || ''
 
@@ -252,5 +265,6 @@ export default {
   initializeSeats,
   createSeat,
   updateSeat,
-  deleteSeat
+  deleteSeat,
+  checkin
 }

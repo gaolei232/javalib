@@ -46,6 +46,17 @@ export const updateUser = async (id, userData) => {
   }
 }
 
+// 获取用户诚信指数
+export const getUserIntegrity = async (id) => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/users/${id}/integrity`)
+    return response.data
+  } catch (error) {
+    console.error('获取用户诚信指数失败:', error)
+    throw error
+  }
+}
+
 // 删除用户
 export const deleteUser = async (id) => {
   try {
@@ -62,5 +73,6 @@ export default {
   getUserById,
   createUser,
   updateUser,
-  deleteUser
+  deleteUser,
+  getUserIntegrity
 }
