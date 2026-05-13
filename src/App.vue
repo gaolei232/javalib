@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <router-view v-slot="{ Component, route }">
-      <transition name="page" mode="out-in">
+      <transition name="page">
         <component :is="Component" :key="route.fullPath" />
       </transition>
     </router-view>
@@ -19,20 +19,31 @@
   display: flex;
   flex-direction: column;
   background: var(--surface-base);
+  position: relative;
+}
+</style>
+
+<style>
+/* 页面过渡 — 同时进行 + 绝对定位重叠，不依赖 mode="out-in" */
+.page-enter-active {
+  transition: opacity 0.28s ease, transform 0.28s ease;
 }
 
-.page-enter-active,
 .page-leave-active {
-  transition: opacity 0.35s ease, transform 0.35s ease;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 
 .page-enter-from {
   opacity: 0;
-  transform: translateY(14px) scale(0.98);
+  transform: translateY(12px);
 }
 
 .page-leave-to {
   opacity: 0;
-  transform: translateY(-10px) scale(0.98);
+  transform: translateY(-8px);
 }
 </style>

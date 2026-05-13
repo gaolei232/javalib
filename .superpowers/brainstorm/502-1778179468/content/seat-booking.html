@@ -1,0 +1,178 @@
+<h2>座位预约页 — 重设计方案</h2>
+<p class="subtitle">三段式布局 · 空间筛选区 · 座位地图 · 详情侧栏 · 时间线</p>
+
+<div class="mockup">
+  <div class="mockup-header">座位预约主界面（模拟浏览器窗口）</div>
+  <div class="mockup-body">
+    <div style="background:#f5f0e8;font-family:Manrope,Inter,sans-serif;min-height:auto;padding:0;">
+      <!-- Top Bar -->
+      <div style="background:#fff;display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:1px solid #e8e2d8;">
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+          <div style="width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#b45309,#d97706);display:grid;place-items:center;color:#fff;font-weight:700;font-size:1rem;">LS</div>
+          <div>
+            <div style="font-weight:700;color:#4a3728;font-size:0.95rem;">考研图书馆</div>
+            <div style="font-size:0.7rem;color:#a89880;">座位预约中心</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:0.5rem;background:#f5f0e8;padding:0.3rem;border-radius:999px;">
+          <div style="padding:0.45rem 1.2rem;border-radius:999px;background:#fff;font-weight:600;font-size:0.85rem;color:#4a3728;box-shadow:0 1px 3px rgba(0,0,0,0.06);">座位预约</div>
+          <div style="padding:0.45rem 1.2rem;border-radius:999px;font-weight:500;font-size:0.85rem;color:#8b7355;">我的预约</div>
+          <div style="padding:0.45rem 1.2rem;border-radius:999px;font-weight:500;font-size:0.85rem;color:#8b7355;">账号信息</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:1rem;">
+          <span style="font-size:0.85rem;color:#8b7355;">欢迎，同学</span>
+          <div style="padding:0.45rem 1rem;border-radius:999px;background:#fff;border:1.5px solid #e8e2d8;font-weight:600;font-size:0.85rem;color:#b45309;">退出</div>
+        </div>
+      </div>
+      <!-- Content Area -->
+      <div style="padding:1.5rem 2rem;display:grid;gap:1.5rem;">
+        <!-- Filter Panel -->
+        <div style="background:#fff;border-radius:16px;padding:1.2rem 1.5rem;border:1px solid #e8e2d8;display:flex;gap:1.5rem;align-items:end;flex-wrap:wrap;">
+          <div>
+            <div style="font-size:0.72rem;font-weight:700;color:#a89880;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.3rem;">楼栋</div>
+            <select style="padding:0.55rem 0.8rem;border-radius:10px;border:1.5px solid #e8e2d8;font-size:0.9rem;background:#faf8f5;color:#4a3728;">
+              <option>1号楼</option><option>2号楼</option><option>3号楼</option>
+            </select>
+          </div>
+          <div>
+            <div style="font-size:0.72rem;font-weight:700;color:#a89880;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.3rem;">楼层</div>
+            <select style="padding:0.55rem 0.8rem;border-radius:10px;border:1.5px solid #e8e2d8;font-size:0.9rem;background:#faf8f5;color:#4a3728;">
+              <option>1 层</option><option>2 层</option><option>3 层</option>
+            </select>
+          </div>
+          <div>
+            <div style="font-size:0.72rem;font-weight:700;color:#a89880;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.3rem;">日期</div>
+            <input type="date" style="padding:0.55rem 0.8rem;border-radius:10px;border:1.5px solid #e8e2d8;font-size:0.9rem;background:#faf8f5;color:#4a3728;" />
+          </div>
+          <div style="border-left:1px solid #e8e2d8;padding-left:1.5rem;">
+            <div style="font-size:0.72rem;font-weight:700;color:#a89880;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.3rem;">靠窗 / 插座 / 安静区</div>
+            <div style="display:flex;gap:0.5rem;">
+              <select style="padding:0.55rem 0.8rem;border-radius:10px;border:1.5px solid #e8e2d8;font-size:0.85rem;background:#faf8f5;color:#4a3728;"><option>靠窗：全部</option><option>仅靠窗</option><option>不靠窗</option></select>
+              <select style="padding:0.55rem 0.8rem;border-radius:10px;border:1.5px solid #e8e2d8;font-size:0.85rem;background:#faf8f5;color:#4a3728;"><option>插座：全部</option><option>有插座</option><option>无插座</option></select>
+              <select style="padding:0.55rem 0.8rem;border-radius:10px;border:1.5px solid #e8e2d8;font-size:0.85rem;background:#faf8f5;color:#4a3728;"><option>安静区：全部</option><option>仅安静区</option><option>非安静区</option></select>
+            </div>
+          </div>
+        </div>
+        <!-- Legend -->
+        <div style="display:flex;gap:1.5rem;flex-wrap:wrap;align-items:center;">
+          <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.82rem;color:#6b5b4b;"><span style="width:10px;height:10px;border-radius:50%;background:#d4a574;"></span>可预约</div>
+          <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.82rem;color:#6b5b4b;"><span style="width:10px;height:10px;border-radius:50%;background:#f0c060;"></span>部分占用</div>
+          <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.82rem;color:#6b5b4b;"><span style="width:10px;height:10px;border-radius:50%;background:#b45309;"></span>我有预约</div>
+          <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.82rem;color:#6b5b4b;"><span style="width:10px;height:10px;border-radius:50%;background:#a89880;"></span>已满</div>
+        </div>
+        <!-- Time Selector -->
+        <div style="display:flex;gap:1rem;align-items:end;">
+          <div>
+            <div style="font-size:0.72rem;font-weight:700;color:#a89880;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.3rem;">开始时间</div>
+            <select style="padding:0.55rem 1rem;border-radius:10px;border:1.5px solid #e8e2d8;font-size:0.9rem;background:#faf8f5;color:#4a3728;"><option>08:00</option><option>08:30</option><option>09:00</option></select>
+          </div>
+          <div>
+            <div style="font-size:0.72rem;font-weight:700;color:#a89880;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.3rem;">结束时间</div>
+            <select style="padding:0.55rem 1rem;border-radius:10px;border:1.5px solid #e8e2d8;font-size:0.9rem;background:#faf8f5;color:#4a3728;"><option>10:00</option><option>10:30</option><option>11:00</option></select>
+          </div>
+        </div>
+        <!-- Seat Map + Detail -->
+        <div style="display:grid;grid-template-columns:1fr 340px;gap:1.5rem;">
+          <!-- Seat Map -->
+          <div style="background:#fff;border-radius:16px;padding:1.5rem;border:1px solid #e8e2d8;">
+            <div style="display:grid;gap:0.6rem;">
+              <div style="display:flex;align-items:center;gap:0.5rem;">
+                <span style="width:22px;text-align:right;font-size:0.8rem;color:#a89880;">A</span>
+                <span style="width:46px;height:46px;border-radius:12px;background:#e8e2d8;display:grid;place-items:center;font-weight:600;font-size:0.82rem;color:#6b5b4b;">1</span>
+                <span style="width:46px;height:46px;border-radius:12px;background:#e8e2d8;display:grid;place-items:center;font-weight:600;font-size:0.82rem;color:#6b5b4b;">2</span>
+                <span style="width:46px;height:46px;border-radius:12px;background:#fef3c7;display:grid;place-items:center;font-weight:600;font-size:0.82rem;color:#92400e;border:2px solid #f0c060;">3</span>
+                <span style="width:46px;height:46px;border-radius:12px;background:#d4a57433;display:grid;place-items:center;font-weight:600;font-size:0.82rem;color:#6b5b4b;">4</span>
+                <span style="width:46px;height:46px;border-radius:12px;background:#b4530915;display:grid;place-items:center;font-weight:600;font-size:0.82rem;color:#b45309;border:2px solid #b45309;">5</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:0.5rem;">
+                <span style="width:22px;text-align:right;font-size:0.8rem;color:#a89880;">B</span>
+                <span style="width:46px;height:46px;border-radius:12px;background:#e8e2d8;display:grid;place-items:center;font-weight:600;font-size:0.82rem;color:#6b5b4b;">1</span>
+                <span style="width:46px;height:46px;border-radius:12px;background:#d4a57433;display:grid;place-items:center;font-weight:600;font-size:0.82rem;color:#6b5b4b;">2</span>
+                <span style="width:46px;height:46px;border-radius:12px;background:#d4a57433;display:grid;place-items:center;font-weight:600;font-size:0.82rem;color:#6b5b4b;">3</span>
+                <span style="width:46px;height:46px;border-radius:12px;background:#fef3c7;display:grid;place-items:center;font-weight:600;font-size:0.82rem;color:#92400e;border:2px solid #f0c060;">4</span>
+                <span style="width:46px;height:46px;border-radius:12px;background:#a8988040;display:grid;place-items:center;font-weight:600;font-size:0.82rem;color:#a89880;">5</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:0.5rem;">
+                <span style="width:22px;text-align:right;font-size:0.8rem;color:#a89880;">C</span>
+                <span style="width:46px;height:46px;border-radius:12px;background:#d4a57433;display:grid;place-items:center;font-weight:600;font-size:0.82rem;color:#6b5b4b;">1</span>
+                <span style="width:46px;height:46px;border-radius:12px;background:#e8e2d8;display:grid;place-items:center;font-weight:600;font-size:0.82rem;color:#6b5b4b;">2</span>
+                <span style="width:46px;height:46px;border-radius:12px;background:#e8e2d8;display:grid;place-items:center;font-weight:600;font-size:0.82rem;color:#6b5b4b;">3</span>
+                <span style="width:46px;height:46px;border-radius:12px;background:#d4a57433;display:grid;place-items:center;font-weight:600;font-size:0.82rem;color:#6b5b4b;">4</span>
+                <span style="width:46px;height:46px;border-radius:12px;background:#d4a57433;display:grid;place-items:center;font-weight:600;font-size:0.82rem;color:#6b5b4b;">5</span>
+              </div>
+            </div>
+          </div>
+          <!-- Detail Panel -->
+          <div style="background:#fff;border-radius:16px;padding:1.5rem;border:1px solid #e8e2d8;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+              <div style="font-weight:700;color:#4a3728;font-size:0.95rem;">座位详情</div>
+              <div style="font-size:0.78rem;color:#a89880;">点击座位查看</div>
+            </div>
+            <div style="background:#faf8f5;border-radius:12px;padding:1rem;border:1px solid #e8e2d8;margin-bottom:1rem;">
+              <div style="font-weight:700;color:#4a3728;font-size:1.05rem;margin-bottom:0.4rem;">B1-F1-A-3</div>
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <span style="font-size:0.82rem;color:#8b7355;">当前状态</span>
+                <span style="padding:0.25rem 0.6rem;border-radius:999px;font-size:0.75rem;font-weight:600;background:#fef3c7;color:#92400e;">部分占用</span>
+              </div>
+            </div>
+            <div style="display:flex;gap:0.5rem;margin-bottom:1rem;flex-wrap:wrap;">
+              <span style="padding:0.25rem 0.6rem;border-radius:999px;font-size:0.75rem;background:#faf8f5;color:#6b5b4b;border:1px solid #e8e2d8;">靠窗</span>
+              <span style="padding:0.25rem 0.6rem;border-radius:999px;font-size:0.75rem;background:#faf8f5;color:#6b5b4b;border:1px solid #e8e2d8;">有插座</span>
+              <span style="padding:0.25rem 0.6rem;border-radius:999px;font-size:0.75rem;background:#faf8f5;color:#6b5b4b;border:1px solid #e8e2d8;">安静区</span>
+            </div>
+            <div style="font-weight:600;color:#6b5b4b;font-size:0.85rem;margin-bottom:0.5rem;">已预约时段</div>
+            <div style="display:grid;gap:0.4rem;margin-bottom:1rem;">
+              <div style="padding:0.5rem 0.8rem;border-radius:10px;background:#fef3c7;border:1px solid #f0c060;display:flex;justify-content:space-between;font-size:0.85rem;">
+                <strong style="color:#92400e;">09:00 - 11:00</strong>
+                <span style="color:#a89880;">已预约</span>
+              </div>
+              <div style="padding:0.5rem 0.8rem;border-radius:10px;background:#b4530910;border:1px solid #b4530940;display:flex;justify-content:space-between;font-size:0.85rem;">
+                <strong style="color:#b45309;">14:00 - 16:00</strong>
+                <span style="color:#b45309;">我的预约</span>
+              </div>
+            </div>
+            <div style="display:flex;gap:0.75rem;">
+              <div style="flex:1;padding:0.65rem;border-radius:999px;background:linear-gradient(135deg,#b45309,#d97706);color:#fff;font-weight:700;text-align:center;font-size:0.88rem;">立即预约</div>
+              <div style="padding:0.65rem 1rem;border-radius:999px;background:#fff;border:1.5px solid #e8e2d8;color:#b45309;font-weight:600;text-align:center;font-size:0.85rem;">取消我的预约</div>
+            </div>
+          </div>
+        </div>
+        <!-- Time timeline -->
+        <div style="background:#fff;border-radius:16px;padding:1rem 1.5rem;border:1px solid #e8e2d8;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.6rem;">
+            <div style="font-weight:600;color:#6b5b4b;font-size:0.85rem;">当前座位当日时间分布</div>
+            <div style="font-size:0.78rem;color:#a89880;">08:00 - 22:00</div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(14,1fr);gap:0.2rem;">
+            <div style="height:26px;border-radius:6px;background:#d4a57433;display:grid;place-items:center;font-size:0.65rem;color:#6b5b4b;">08</div>
+            <div style="height:26px;border-radius:6px;background:#fef3c7;display:grid;place-items:center;font-size:0.65rem;color:#92400e;">09</div>
+            <div style="height:26px;border-radius:6px;background:#fef3c7;display:grid;place-items:center;font-size:0.65rem;color:#92400e;">10</div>
+            <div style="height:26px;border-radius:6px;background:#d4a57433;display:grid;place-items:center;font-size:0.65rem;color:#6b5b4b;">11</div>
+            <div style="height:26px;border-radius:6px;background:#d4a57433;display:grid;place-items:center;font-size:0.65rem;color:#6b5b4b;">12</div>
+            <div style="height:26px;border-radius:6px;background:#d4a57433;display:grid;place-items:center;font-size:0.65rem;color:#6b5b4b;">13</div>
+            <div style="height:26px;border-radius:6px;background:#b4530915;display:grid;place-items:center;font-size:0.65rem;color:#b45309;">14</div>
+            <div style="height:26px;border-radius:6px;background:#b4530915;display:grid;place-items:center;font-size:0.65rem;color:#b45309;">15</div>
+            <div style="height:26px;border-radius:6px;background:#d4a57433;display:grid;place-items:center;font-size:0.65rem;color:#6b5b4b;">16</div>
+            <div style="height:26px;border-radius:6px;background:#d4a57433;display:grid;place-items:center;font-size:0.65rem;color:#6b5b4b;">17</div>
+            <div style="height:26px;border-radius:6px;background:#d4a57433;display:grid;place-items:center;font-size:0.65rem;color:#6b5b4b;">18</div>
+            <div style="height:26px;border-radius:6px;background:#d4a57433;display:grid;place-items:center;font-size:0.65rem;color:#6b5b4b;">19</div>
+            <div style="height:26px;border-radius:6px;background:#d4a57433;display:grid;place-items:center;font-size:0.65rem;color:#6b5b4b;">20</div>
+            <div style="height:26px;border-radius:6px;background:#d4a57433;display:grid;place-items:center;font-size:0.65rem;color:#6b5b4b;">21</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top:1.5rem;">
+  <h3>设计要点</h3>
+  <ul style="color:#6b5b4b;line-height:1.8;">
+    <li><strong>三段式布局</strong> — 顶部导航、筛选区、地图+详情+时间线</li>
+    <li><strong>筛选面板合一</strong> — 楼栋/楼层/日期 + 靠窗/插座/安静区整合到一行</li>
+    <li><strong>座位色阶</strong> — 暖沙色(可约) → 蜂蜜黄(部分占用) → 琥珀棕(我已约) → 灰色(已满)</li>
+    <li><strong>详情面板</strong> — 右侧固定详情区，含座位信息、时段列表、操作按钮</li>
+    <li><strong>时间线简化</strong> — 14段紧凑时间轴，颜色对应状态</li>
+    <li><strong>API 照搬</strong> — seatApi.getAllSeats / bookSeat / cancelBookingById / getUserBookedSeats / getSeatBookingsByDate 全部照搬</li>
+  </ul>
+</div>

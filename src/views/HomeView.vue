@@ -1,310 +1,299 @@
-﻿<template>
+<template>
+  <!--
+    首页 — 极简编辑 × 温暖学术
+    作用：系统 Landing Page，呈现品牌形象并引导用户进入预约或注册
+  -->
   <div class="landing">
     <header class="landing-header">
-      <div class="brand">
-        <div class="brand-mark"></div>
-        <div>
-          <p class="brand-name">Library Seat</p>
-          <p class="brand-tagline">智慧座位预约平台</p>
-        </div>
-      </div>
+      <router-link to="/" class="brand">
+        <span class="brand-mark">LS</span>
+        <span class="brand-name">座位预约系统</span>
+      </router-link>
       <nav class="landing-nav">
-        <router-link to="/login" class="nav-link">登录</router-link>
-        <router-link to="/register" class="nav-link ghost">注册</router-link>
+        <router-link to="/login" class="btn-primary">登录</router-link>
+        <router-link to="/register" class="btn-secondary">注册</router-link>
       </nav>
     </header>
 
-    <main class="landing-main">
-      <section class="hero">
-        <div class="hero-content">
-          <p class="hero-eyebrow">Spring Boot + Vue 3</p>
-          <h2 class="hero-title">考研图书馆座位预约系统</h2>
-          <p class="hero-subtitle">
-            通过智能预约系统，实现座位管理的高效、安全与便捷。
-          </p>
-          <div class="hero-actions">
-            <router-link to="/login" class="primary-action">立即开始</router-link>
-            <router-link to="/register" class="secondary-action">创建账号</router-link>
-            <router-link to="/aaa" class="secondary-action preview-action">AAA 页面</router-link>
-          </div>
-          <div class="hero-metrics">
-            <div>
-              <h3>40+</h3>
-              <p>座位实时可视</p>
-            </div>
-            <div>
-              <h3>WebSocket</h3>
-              <p>秒级状态同步</p>
-            </div>
-            <div>
-              <h3>Admin</h3>
-              <p>可视化管理</p>
-            </div>
-          </div>
+    <main class="hero">
+      <p class="hero-eyebrow">Spring Boot + Vue 3 · WebSocket 实时同步</p>
+      <h1 class="hero-title">安静地找到一个<br />属于你的座位</h1>
+      <p class="hero-desc">
+        考研图书馆座位预约系统 — 智能分配、实时状态、多楼栋覆盖。<br />像翻开一本书一样自然地预约。
+      </p>
+      <div class="hero-actions">
+        <router-link to="/login" class="btn-primary btn-lg">开始预约</router-link>
+        <router-link to="/register" class="btn-secondary btn-lg">创建账号</router-link>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-value">40+</span>
+          <span class="stat-label">实时可视座位</span>
         </div>
-        <div class="hero-card">
-          <div class="card-panel">
-            <div class="card-header">
-              <span class="card-dot"></span>
-              <span class="card-dot"></span>
-              <span class="card-dot"></span>
-            </div>
-            <div class="card-content">
-              <h2>系统亮点</h2>
-              <ul>
-                <li>多角色权限与安全认证</li>
-                <li>座位统计与预约分析</li>
-                <li>管理端全局可视化</li>
-                <li>预约时长灵活配置</li>
-              </ul>
-              <div class="card-footer">
-                <p>快速部署，稳定运行</p>
-                <router-link to="/login">进入系统</router-link>
-              </div>
-            </div>
-          </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-value">3</span>
+          <span class="stat-label">楼栋覆盖</span>
         </div>
-      </section>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-value">&lt;1s</span>
+          <span class="stat-label">WebSocket 同步延迟</span>
+        </div>
+      </div>
     </main>
+
+    <section class="features">
+      <div class="feature-card">
+        <div class="feature-icon icon-time">S</div>
+        <h3>灵活时段预约</h3>
+        <p>08:00 – 22:00，30 分钟粒度，自由选择开始与结束时间。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon icon-realtime">R</div>
+        <h3>实时状态同步</h3>
+        <p>WebSocket 推送座位变化，无需手动刷新页面。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon icon-admin">A</div>
+        <h3>多角色权限</h3>
+        <p>学生用户预约座位，管理员全局可视化管理与统计分析。</p>
+      </div>
+    </section>
+
+    <footer class="landing-footer">
+      <span>考研图书馆座位预约系统</span>
+      <router-link to="/aaa" class="footer-link">基础页面</router-link>
+    </footer>
   </div>
 </template>
 
 <script setup>
+// 首页无额外逻辑 — 路由链接直接跳转
 </script>
 
 <style scoped>
 .landing {
   min-height: 100vh;
-  background: radial-gradient(circle at top, rgba(99, 102, 241, 0.12), transparent 55%),
-    var(--surface-base);
-  padding: 2.5rem 6vw 4rem;
+  background: linear-gradient(180deg, var(--paper-white) 0%, var(--paper-warm) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 2rem 3rem;
 }
 
+/* ── 导航 ── */
 .landing-header {
+  width: 100%;
+  max-width: 1100px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 3.5rem;
+  margin-bottom: 4rem;
 }
 
 .brand {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
+  color: var(--text-body);
 }
 
 .brand-mark {
-  width: 48px;
-  height: 48px;
-  border-radius: 16px;
-  background: var(--brand-gradient);
-  box-shadow: var(--shadow-card);
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--amber-gradient);
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.1rem;
 }
 
 .brand-name {
-  font-size: 1.1rem;
+  font-family: var(--font-display);
   font-weight: 700;
-  color: var(--text-primary);
-}
-
-.brand-tagline {
-  font-size: 0.9rem;
-  color: var(--text-subtle);
+  font-size: 1.05rem;
+  color: var(--text-body);
 }
 
 .landing-nav {
   display: flex;
-  gap: 1rem;
-  align-items: center;
+  gap: 0.75rem;
 }
 
-.nav-link {
-  padding: 0.55rem 1.4rem;
-  border-radius: 999px;
-  background: var(--brand-gradient);
-  color: #fff;
-  font-weight: 600;
-  box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
-  transition: transform 0.2s ease;
-}
-
-.nav-link:hover {
-  transform: translateY(-2px);
-}
-
-.nav-link.ghost {
-  background: #fff;
-  color: var(--brand-accent);
-  box-shadow: var(--shadow-border);
-}
-
-.landing-main {
-  display: flex;
-  justify-content: center;
-}
-
+/* ── Hero ── */
 .hero {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 3rem;
-  align-items: center;
-  width: min(1100px, 100%);
-}
-
-.hero-content {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+  max-width: 720px;
+  text-align: center;
+  margin-bottom: 4rem;
 }
 
 .hero-eyebrow {
   text-transform: uppercase;
-  letter-spacing: 0.2rem;
+  letter-spacing: 0.2em;
   font-size: 0.75rem;
   font-weight: 700;
-  color: var(--brand-accent);
+  color: var(--amber);
+  margin-bottom: 1.5rem;
 }
 
 .hero-title {
-  font-size: clamp(2.2rem, 3vw, 3rem);
-  line-height: 1.1;
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+  font-weight: 800;
+  color: var(--text-strong);
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
 }
 
-.hero-subtitle {
+.hero-desc {
   font-size: 1.05rem;
-  color: var(--text-muted);
+  color: var(--text-soft);
   max-width: 520px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.7;
 }
 
 .hero-actions {
   display: flex;
   gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.btn-lg {
+  padding: 0.85rem 2rem;
+  font-size: 1rem;
+}
+
+/* ── Stats ── */
+.hero-stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
   flex-wrap: wrap;
 }
 
-.primary-action,
-.secondary-action {
-  padding: 0.75rem 1.6rem;
-  border-radius: 999px;
-  font-weight: 600;
-  box-shadow: var(--shadow-card);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+.stat {
+  text-align: center;
 }
 
-.primary-action {
-  background: var(--brand-gradient);
-  color: #fff;
+.stat-value {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--text-strong);
 }
 
-.secondary-action {
-  background: #fff;
-  color: var(--brand-accent);
-  box-shadow: var(--shadow-border);
+.stat-label {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--text-soft);
+  margin-top: 0.2rem;
 }
 
-.primary-action:hover,
-.secondary-action:hover {
-  transform: translateY(-2px);
+.stat-divider {
+  width: 1px;
+  height: 32px;
+  background: var(--border-warm);
 }
 
-.preview-action {
-  background: rgba(255, 255, 255, 0.75);
-}
-
-.hero-metrics {
+/* ── Features ── */
+.features {
+  max-width: 960px;
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.5rem;
+  margin-bottom: 3rem;
 }
 
-.hero-metrics h3 {
-  font-size: 1.3rem;
+.feature-card {
+  background: var(--card-pure);
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+  border: 1px solid var(--border-warm);
+  transition: transform var(--ease-smooth);
 }
 
-.hero-card {
-  display: flex;
-  justify-content: center;
+.feature-card:hover {
+  transform: translateY(-3px);
 }
 
-.card-panel {
-  background: var(--surface-card);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-soft);
-  overflow: hidden;
-  width: min(420px, 100%);
-}
-
-.card-header {
-  display: flex;
-  gap: 0.4rem;
-  padding: 1rem 1.5rem;
-  background: var(--surface-elevated);
-}
-
-.card-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: rgba(148, 163, 184, 0.6);
-}
-
-.card-content {
-  padding: 2rem 2.5rem 2.5rem;
-}
-
-.card-content h2 {
-  margin-bottom: 1rem;
-  font-size: 1.4rem;
-}
-
-.card-content ul {
-  margin: 0;
-  padding-left: 1.2rem;
-  color: var(--text-muted);
+.feature-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
   display: grid;
-  gap: 0.7rem;
+  place-items: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
 }
 
-.card-footer {
-  margin-top: 2rem;
+.icon-time {
+  background: var(--honey);
+  color: var(--amber);
+}
+
+.icon-realtime {
+  background: var(--green-soft);
+  color: var(--green-text);
+}
+
+.icon-admin {
+  background: var(--red-soft);
+  color: var(--red-text);
+}
+
+.feature-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-body);
+}
+
+.feature-card p {
+  font-size: 0.9rem;
+  color: var(--text-soft);
+  line-height: 1.6;
+}
+
+/* ── Footer ── */
+.landing-footer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 1.5rem;
+  font-size: 0.82rem;
+  color: var(--text-subtle);
 }
 
-.card-footer a {
-  font-weight: 600;
+.footer-link {
+  color: var(--text-soft);
+  font-weight: 500;
 }
 
+/* ── 响应式 ── */
 @media (max-width: 768px) {
   .landing {
-    padding: 2rem 1.5rem 3rem;
+    padding: 1.5rem 1.5rem 2.5rem;
   }
 
   .landing-header {
     flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-stats {
     gap: 1.5rem;
-    align-items: stretch;
-  }
-
-  .landing-nav {
-    width: 100%;
-    justify-content: stretch;
-  }
-
-  .nav-link {
-    flex: 1;
-    text-align: center;
-  }
-
-  .card-content {
-    padding: 1.5rem;
-  }
-
-  .card-footer {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.75rem;
   }
 }
 
@@ -313,23 +302,28 @@
     padding: 1.25rem 1rem 2rem;
   }
 
-  .hero {
-    gap: 1.5rem;
-  }
-
   .hero-title {
-    font-size: 1.95rem;
+    font-size: 1.8rem;
   }
 
   .hero-actions {
-    display: grid;
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    width: 100%;
   }
 
-  .primary-action,
-  .secondary-action {
+  .btn-lg {
     width: 100%;
     text-align: center;
+  }
+
+  .hero-stats {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .stat-divider {
+    width: 32px;
+    height: 1px;
   }
 }
 </style>

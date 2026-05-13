@@ -1,0 +1,266 @@
+schema_version: "2.0"
+language: "zh-CN"
+encoding: "utf-8"
+
+paper:
+  title: "基于 Vue 的图书馆座位预约系统的研究与实现"
+  type: "本科毕业论文"
+  type_profile: "system_design"
+  school: "西安工业大学"
+  college: "计算机科学与工程学院"
+  major: "计算机科学与技术"
+  author: "高磊"
+  advisor: "王亚文"
+  submission_date: "2026-05-09"
+  template_profile: "thesis-ai-standard/templates/standard-profile.yaml"
+
+standards:
+  priority:
+    - "学校毕业论文模板和学院细则"
+    - "导师明确要求"
+    - "教育部抽检与学术规范要求"
+    - "GB/T 7714参考文献标准"
+    - "本套件默认规范"
+  reference_style:
+    standard: "GB/T 7714"
+    version: "2015"
+    notes: "参考文献按GB/T 7714格式"
+  thesis_writing_reference:
+    standard: "GB/T 7713.1"
+    version: "2025"
+    notes: "作为结构和编排思想参考，不覆盖学校模板"
+
+topic:
+  background: "高校图书馆座位资源紧张，传统人工管理方式存在效率低、信息滞后、预约冲突频发等问题"
+  problem_statement: "如何基于前后端分离架构设计并实现一个支持灵活时段预约、实时状态同步和后台统计管理的图书馆座位预约系统"
+  objectives:
+    - "实现一套基于Vue 3和Spring Boot的可运行图书馆座位预约系统"
+    - "建立基于时间区间重叠判定的预约冲突控制机制"
+    - "通过WebSocket实现座位状态的实时同步"
+    - "设计学生统计数据生成机制支撑后台管理决策"
+  significance:
+    theoretical: "为前后端分离架构在资源预约类系统中的应用提供实践参考"
+    practical: "解决高校图书馆高频自习场景下的座位管理难题，提升座位利用效率"
+  scope:
+    included:
+      - "前后端分离架构设计与实现"
+      - "用户认证与角色管理"
+      - "座位展示与灵活时段预约"
+      - "时间区间重叠冲突检测"
+      - "WebSocket实时状态同步"
+      - "管理员后台（用户/座位/预约/统计管理）"
+      - "学生统计与排行榜功能"
+    excluded:
+      - "移动端或小程序适配"
+      - "高并发分布式部署方案"
+      - "第三方支付或计费功能"
+      - "实时签到/签退硬件联动"
+
+research_or_project:
+  domain: "Web系统开发；前后端分离架构"
+  object: "考研图书馆座位预约系统"
+  methodology:
+    - "前后端分离架构设计"
+    - "RESTful API接口设计"
+    - "时间区间重叠冲突检测算法"
+    - "WebSocket实时通信机制"
+    - "软件测试与验证"
+  data_sources:
+    - name: "项目源码"
+      status: "provided"
+      notes: "G:/Java-lib/ — Spring Boot + Vue 3 完整项目源码"
+    - name: "开题报告与中期报告"
+      status: "provided"
+      notes: "位于G:/Java-lib/LunWen/"
+    - name: "参考文献"
+      status: "provided"
+      notes: "论文正文已有12篇参考文献"
+  implementation_sources:
+    code_repository: "G:/Java-lib/src"
+    database_schema: "源码entity目录下包含User/Seat/SeatBooking/StudentStats/SystemConfig等实体"
+    api_docs: "controller目录包含Auth/Seat/User/Student/StudentStats/SystemConfig控制器"
+    test_reports: "论文第六章基于2026年4月2日实际编译与接口测试结果"
+
+roles_or_subjects:
+  - name: "普通用户（USER）"
+    description: "注册登录、按日期时段预约座位、查看个人记录、取消预约"
+    evidence: "源码中AuthController、SeatController、HomeView、SeatBookingView"
+  - name: "管理员（ADMIN）"
+    description: "系统概览、用户管理、座位管理、预约管理、统计查看"
+    evidence: "源码中UserController、AdminView、UserList、StudentStatsController"
+
+technology_or_method_stack:
+  frontend: ["Vue 3", "Vite", "Vue Router", "Pinia", "Axios"]
+  backend: ["Spring Boot 3", "Spring MVC", "Spring Data JPA", "Spring Security", "WebSocket"]
+  database: ["MySQL", "H2（测试环境）"]
+  analysis_tools: []
+  experiment_tools: ["Maven", "Node.js", "H2 Console"]
+  external_services: []
+  notes: "系统采用前后端分离架构，前端Vue 3构建SPA，后端Spring Boot提供RESTful API"
+
+chapters:
+  - id: "chapter-1"
+    title: "绪论"
+    purpose: "阐述选题背景、研究意义、国内外研究现状和研究内容"
+    required_sections:
+      - "研究背景"
+      - "研究目的与意义"
+      - "国内外研究现状"
+      - "研究内容"
+      - "论文结构安排"
+    evidence_required:
+      - "开题报告"
+      - "参考文献[1]-[12]"
+    recommended_outputs:
+      figures: []
+      tables: []
+
+  - id: "chapter-2"
+    title: "相关技术与理论基础"
+    purpose: "介绍Vue 3、Spring Boot、JPA/MySQL、WebSocket、前后端分离等技术"
+    required_sections:
+      - "Vue 3前端框架"
+      - "Spring Boot后端开发框架"
+      - "Spring Data JPA与MySQL"
+      - "WebSocket实时通信"
+      - "前后端分离与状态管理"
+    evidence_required:
+      - "项目pom.xml及package.json依赖"
+      - "技术参考文献[1]-[7]"
+    recommended_outputs:
+      figures: []
+      tables: []
+
+  - id: "chapter-3"
+    title: "系统需求分析"
+    purpose: "分析业务场景、功能需求和非功能需求"
+    required_sections:
+      - "系统应用场景分析"
+      - "功能需求分析（普通用户/管理员/实时同步）"
+      - "非功能需求分析"
+    evidence_required:
+      - "系统功能说明文档"
+    recommended_outputs:
+      figures: []
+      tables: []
+
+  - id: "chapter-4"
+    title: "系统总体设计"
+    purpose: "架构设计、模块划分、数据库设计和业务流程设计"
+    required_sections:
+      - "系统总体架构"
+      - "功能模块设计"
+      - "数据库设计"
+      - "业务流程设计"
+      - "接口设计分析"
+    evidence_required:
+      - "源码entity目录下实体类"
+      - "源码controller目录下接口"
+    recommended_outputs:
+      figures:
+        - "系统总体架构图"
+        - "E-R图"
+        - "预约业务流程图"
+      tables:
+        - "用户表"
+        - "座位表"
+        - "预约记录表"
+        - "学生统计表"
+
+  - id: "chapter-5"
+    title: "系统详细设计与实现"
+    purpose: "关键模块的实现分析，包括认证、预约、冲突检测、实时同步等"
+    required_sections:
+      - "用户认证模块实现"
+      - "座位预约模块实现"
+      - "座位状态实时同步实现"
+      - "管理员后台模块实现"
+      - "学生统计模块实现"
+    evidence_required:
+      - "AuthServiceImpl.java"
+      - "SeatService.java"
+      - "SeatStatusWebSocketHandler.java"
+      - "前端Vue组件代码"
+    recommended_outputs:
+      figures:
+        - "座位预约界面截图"
+        - "WebSocket消息截图"
+        - "后台管理页面截图"
+      tables:
+        - "核心接口列表"
+
+  - id: "chapter-6"
+    title: "系统测试与结果分析"
+    purpose: "通过实际构建和接口测试验证系统功能"
+    required_sections:
+      - "测试环境"
+      - "功能测试"
+      - "测试结果分析"
+      - "存在的问题与改进方向"
+    evidence_required:
+      - "npm run build构建结果"
+      - "Maven打包结果"
+      - "接口测试结果"
+    recommended_outputs:
+      figures:
+        - "编译/打包截图"
+        - "测试结果截图"
+      tables:
+        - "测试用例与结果汇总表"
+
+  - id: "conclusion"
+    title: "结论"
+    purpose: "总结全文工作并展望改进方向"
+    required_sections:
+      - "工作总结"
+      - "主要成果"
+      - "不足与展望"
+    evidence_required:
+      - "全文已出现的结果和证据"
+    recommended_outputs:
+      figures: []
+      tables: []
+
+figure_policy:
+  caption_position: "图题置于图下"
+  table_caption_position: "表题置于表上"
+  equation_position: "公式独立成行，编号居右"
+  source_required: true
+  source_types:
+    editable_diagram:
+      - "架构图"
+      - "流程图"
+      - "E-R图"
+    screenshot:
+      - "运行界面"
+      - "测试结果"
+    table:
+      - "字段表"
+      - "测试用例表"
+      - "测试结果表"
+  naming_pattern: "thesis-figure-{chapter}-{index}"
+
+evidence_index:
+  project_evidence: "paper-context/evidence/project-evidence.json"
+  code_structure: "paper-context/evidence/code-structure.md"
+  tech_stack: "paper-context/evidence/tech-stack.md"
+  database_schema: "paper-context/evidence/database-schema.md"
+  api_list: "paper-context/evidence/api-list.md"
+  test_results: "paper-context/evidence/test-results.md"
+  data_dictionary: "paper-context/evidence/data-dictionary.md"
+
+ai_rules:
+  must_not_fabricate:
+    - "测试结果"
+    - "数据库字段"
+    - "接口路径"
+    - "参考文献"
+    - "系统功能"
+  must_check:
+    - "学校模板优先级"
+    - "章节层级"
+    - "图表编号"
+    - "正文引用"
+    - "术语一致性"
+    - "证据链完整性"
+    - "参考文献引用闭环"

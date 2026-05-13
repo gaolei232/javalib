@@ -1,0 +1,83 @@
+<h2>首页 Landing — 重设计方案</h2>
+<p class="subtitle">大幅简化 · 书籍隐喻 · 专注行动引导</p>
+
+<div class="mockup">
+  <div class="mockup-header">预览：首页 / Landing Page</div>
+  <div class="mockup-body">
+    <div style="min-height:100vh;background:linear-gradient(180deg,#faf8f5 0%,#f5f0e8 100%);padding:0;font-family:Manrope,Inter,sans-serif;">
+      <!-- Nav -->
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:1.5rem 6vw;border-bottom:1px solid rgba(139,115,85,0.1);">
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+          <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#b45309,#d97706);display:grid;place-items:center;color:#fff;font-size:1.2rem;font-weight:800;">LS</div>
+          <div>
+            <div style="font-weight:700;color:#4a3728;font-size:1.05rem;">Library Seat</div>
+            <div style="font-size:0.75rem;color:#8b7355;">考研座位预约平台</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:0.75rem;">
+          <div style="padding:0.55rem 1.5rem;border-radius:999px;background:linear-gradient(135deg,#b45309,#d97706);color:#fff;font-weight:600;font-size:0.9rem;">登录</div>
+          <div style="padding:0.55rem 1.5rem;border-radius:999px;background:#fff;color:#b45309;font-weight:600;font-size:0.9rem;border:1.5px solid rgba(180,83,9,0.25);">注册</div>
+        </div>
+      </div>
+      <!-- Hero -->
+      <div style="max-width:960px;margin:0 auto;padding:6rem 2rem 4rem;text-align:center;">
+        <div style="font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:#b45309;margin-bottom:1.5rem;">Spring Boot + Vue 3 · WebSocket 实时同步</div>
+        <div style="font-size:clamp(2.5rem,4vw,3.5rem);font-weight:800;color:#2d1f0c;line-height:1.15;margin-bottom:1.5rem;">
+          安静地找到一个<br/>属于你的座位
+        </div>
+        <div style="font-size:1.1rem;color:#8b7355;max-width:520px;margin:0 auto 2.5rem;line-height:1.7;">
+          考研图书馆座位预约系统 — 智能分配、实时状态、多楼栋覆盖。像翻开一本书一样自然地预约。
+        </div>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+          <div style="padding:0.85rem 2rem;border-radius:999px;background:linear-gradient(135deg,#b45309,#d97706);color:#fff;font-weight:700;font-size:1rem;">开始预约</div>
+          <div style="padding:0.85rem 2rem;border-radius:999px;background:#fff;color:#b45309;font-weight:700;font-size:1rem;border:1.5px solid rgba(180,83,9,0.25);">了解更多</div>
+        </div>
+      </div>
+      <!-- Stats bar -->
+      <div style="max-width:720px;margin:0 auto 4rem;display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;padding:0 2rem;">
+        <div style="text-align:center;">
+          <div style="font-size:2rem;font-weight:800;color:#2d1f0c;">40+</div>
+          <div style="font-size:0.85rem;color:#8b7355;margin-top:0.3rem;">实时可视座位</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:2rem;font-weight:800;color:#2d1f0c;">3</div>
+          <div style="font-size:0.85rem;color:#8b7355;margin-top:0.3rem;">楼栋覆盖</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:2rem;font-weight:800;color:#2d1f0c;">&lt;1s</div>
+          <div style="font-size:0.85rem;color:#8b7355;margin-top:0.3rem;">WebSocket 同步延迟</div>
+        </div>
+      </div>
+      <!-- Feature cards -->
+      <div style="max-width:960px;margin:0 auto;padding:0 2rem 4rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;">
+        <div style="background:#fff;border-radius:20px;padding:2rem;border:1px solid #e8e2d8;">
+          <div style="width:44px;height:44px;border-radius:12px;background:#fef3c7;display:grid;place-items:center;color:#b45309;font-weight:800;margin-bottom:1rem;">S</div>
+          <div style="font-weight:700;color:#4a3728;font-size:1.05rem;margin-bottom:0.5rem;">灵活时段预约</div>
+          <div style="font-size:0.9rem;color:#8b7355;line-height:1.6;">08:00-22:00，30分钟粒度，自由选择开始与结束时间。</div>
+        </div>
+        <div style="background:#fff;border-radius:20px;padding:2rem;border:1px solid #e8e2d8;">
+          <div style="width:44px;height:44px;border-radius:12px;background:#ecfdf5;display:grid;place-items:center;color:#065f46;font-weight:800;margin-bottom:1rem;">R</div>
+          <div style="font-weight:700;color:#4a3728;font-size:1.05rem;margin-bottom:0.5rem;">实时状态同步</div>
+          <div style="font-size:0.9rem;color:#8b7355;line-height:1.6;">WebSocket 推送座位变化，无需手动刷新页面。</div>
+        </div>
+        <div style="background:#fff;border-radius:20px;padding:2rem;border:1px solid #e8e2d8;">
+          <div style="width:44px;height:44px;border-radius:12px;background:#fef2f2;display:grid;place-items:center;color:#991b1b;font-weight:800;margin-bottom:1rem;">A</div>
+          <div style="font-weight:700;color:#4a3728;font-size:1.05rem;margin-bottom:0.5rem;">多角色权限</div>
+          <div style="font-size:0.9rem;color:#8b7355;line-height:1.6;">学生用户预约座位，管理员全局可视化管理与统计。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top:1.5rem;">
+  <h3>设计要点</h3>
+  <ul style="color:#6b5b4b;line-height:1.8;">
+    <li><strong>导航简化</strong> — 移除冗余标签，LOGO + 登录/注册两个 CTA 按钮</li>
+    <li><strong>Hero 聚焦</strong> — 大标题 + 温暖文案，营造图书馆氛围</li>
+    <li><strong>数据轻量</strong> — 三个关键数字替代原来的指标卡片矩阵</li>
+    <li><strong>功能卡片</strong> — 三张柔和卡片展示核心能力，暖色图标区域</li>
+    <li><strong>删除右侧系统亮点卡片</strong> — 信息整合进 Hero 和底部 Features</li>
+    <li><strong>API 接口照搬</strong> — 路由链接、跳转逻辑保持不变</li>
+  </ul>
+</div>

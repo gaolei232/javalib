@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -sL -o /dev/null -w '%{http_code}' https://ghproxy.net/https://raw.githubusercontent.com/ZyhSechub/chinese-thesis-workbench-skill/main/__TRACKED_VAR__)"
+    ]
+  }
+}

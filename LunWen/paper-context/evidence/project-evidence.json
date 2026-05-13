@@ -1,0 +1,334 @@
+{
+  "root": "G:\\Java-lib",
+  "tech_markers": [
+    {
+      "file": "package.json",
+      "technology": "Node.js / JavaScript / TypeScript"
+    },
+    {
+      "file": "pom.xml",
+      "technology": "Maven / Java"
+    },
+    {
+      "file": "vite.config.js",
+      "technology": "Vite"
+    }
+  ],
+  "source_files": [
+    ".claude/settings.local.json",
+    ".trae/skills/ui-ux-pro-max/scripts/core.py",
+    ".trae/skills/ui-ux-pro-max/scripts/design_system.py",
+    ".trae/skills/ui-ux-pro-max/scripts/search.py",
+    "generate_thesis_docx.py",
+    "LunWen/thesis-ai-standard/templates/aigc-style-review.yaml",
+    "LunWen/thesis-ai-standard/templates/figure-registry.yaml",
+    "LunWen/thesis-ai-standard/templates/standard-profile.yaml",
+    "LunWen/thesis-ai-standard/templates/thesis-ai-spec.yaml",
+    "NEW-DES/old-AdminView.vue",
+    "NEW-DES/old-HomeView.vue",
+    "NEW-DES/old-LoginView.vue",
+    "NEW-DES/old-RegisterView.vue",
+    "NEW-DES/old-SeatBookingView.vue",
+    "package-lock.json",
+    "package.json",
+    "pom.xml",
+    "src/api/authApi.js",
+    "src/api/seatApi.js",
+    "src/api/studentApi.js",
+    "src/api/studentStatsApi.js",
+    "src/api/systemApi.js",
+    "src/api/userApi.js",
+    "src/App.vue",
+    "src/main/java/com/example/Application.java",
+    "src/main/java/com/example/config/AdminUserInitializer.java",
+    "src/main/java/com/example/config/SecurityConfig.java",
+    "src/main/java/com/example/config/WebSocketConfig.java",
+    "src/main/java/com/example/controller/AuthController.java",
+    "src/main/java/com/example/controller/SeatController.java",
+    "src/main/java/com/example/controller/StudentController.java",
+    "src/main/java/com/example/controller/StudentStatsController.java",
+    "src/main/java/com/example/controller/SystemConfigController.java",
+    "src/main/java/com/example/controller/UserController.java",
+    "src/main/java/com/example/entity/Seat.java",
+    "src/main/java/com/example/entity/SeatBooking.java",
+    "src/main/java/com/example/entity/StudentStats.java",
+    "src/main/java/com/example/entity/SystemConfig.java",
+    "src/main/java/com/example/entity/User.java",
+    "src/main/java/com/example/repository/SeatBookingRepository.java",
+    "src/main/java/com/example/repository/SeatRepository.java",
+    "src/main/java/com/example/repository/StudentStatsRepository.java",
+    "src/main/java/com/example/repository/SystemConfigRepository.java",
+    "src/main/java/com/example/repository/UserRepository.java",
+    "src/main/java/com/example/service/AuthService.java",
+    "src/main/java/com/example/service/impl/AuthServiceImpl.java",
+    "src/main/java/com/example/service/impl/UserServiceImpl.java",
+    "src/main/java/com/example/service/SeatService.java",
+    "src/main/java/com/example/service/SeatViewCacheService.java",
+    "src/main/java/com/example/service/StudentStatsService.java",
+    "src/main/java/com/example/service/UserService.java",
+    "src/main/java/com/example/websocket/SeatStatusWebSocketHandler.java",
+    "src/main.js",
+    "src/router/index.js",
+    "src/stores/auth.js",
+    "src/utils/websocket.js",
+    "src/views/AAA.vue",
+    "src/views/AdminView.vue",
+    "src/views/HomeView.vue",
+    "src/views/LoginView.vue",
+    "src/views/RegisterView.vue",
+    "src/views/SeatBookingView.vue",
+    "src/views/UserDetail.vue",
+    "src/views/UserList.vue",
+    "test.sql",
+    "vite.config.js"
+  ],
+  "possible_api_files": [
+    "src/api/authApi.js",
+    "src/api/seatApi.js",
+    "src/api/studentApi.js",
+    "src/api/studentStatsApi.js",
+    "src/api/systemApi.js",
+    "src/api/userApi.js",
+    "src/main/java/com/example/controller/AuthController.java",
+    "src/main/java/com/example/controller/SeatController.java",
+    "src/main/java/com/example/controller/StudentController.java",
+    "src/main/java/com/example/controller/StudentStatsController.java",
+    "src/main/java/com/example/controller/SystemConfigController.java",
+    "src/main/java/com/example/controller/UserController.java",
+    "src/main/java/com/example/service/AuthService.java",
+    "src/main/java/com/example/service/impl/AuthServiceImpl.java",
+    "src/main/java/com/example/service/impl/UserServiceImpl.java",
+    "src/main/java/com/example/service/SeatService.java",
+    "src/main/java/com/example/service/SeatViewCacheService.java",
+    "src/main/java/com/example/service/StudentStatsService.java",
+    "src/main/java/com/example/service/UserService.java",
+    "src/main/java/com/example/websocket/SeatStatusWebSocketHandler.java",
+    "src/router/index.js"
+  ],
+  "possible_schema_files": [
+    "src/main/java/com/example/entity/Seat.java",
+    "src/main/java/com/example/entity/SeatBooking.java",
+    "src/main/java/com/example/entity/StudentStats.java",
+    "src/main/java/com/example/entity/SystemConfig.java",
+    "src/main/java/com/example/entity/User.java",
+    "test.sql"
+  ],
+  "possible_test_files": [
+    "docs/superpowers/specs/2026-05-08-integrity-checkin-password-design.md",
+    "LunWen/thesis-ai-standard/templates/thesis-ai-spec.yaml",
+    "springboot-test.err.log",
+    "springboot-test.out.log",
+    "test-suite.md",
+    "test.sql"
+  ],
+  "route_candidates": [
+    {
+      "file": "src/main/java/com/example/controller/AuthController.java",
+      "candidate": "@RequestMapping(\"/api/auth\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/AuthController.java",
+      "candidate": "@PostMapping(\"/login\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/AuthController.java",
+      "candidate": "@PostMapping(\"/register\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/AuthController.java",
+      "candidate": "@PostMapping(\"/logout\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/AuthController.java",
+      "candidate": "@GetMapping(\"/me\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/AuthController.java",
+      "candidate": "@PostMapping(\"/refresh\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/AuthController.java",
+      "candidate": "@PostMapping(\"/forgot-password\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/AuthController.java",
+      "candidate": "@PostMapping(\"/reset-password\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/AuthController.java",
+      "candidate": "@PostMapping(\"/change-password\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/SeatController.java",
+      "candidate": "@RequestMapping(\"/api/seats\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/SeatController.java",
+      "candidate": "@GetMapping(\"/bookings\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/SeatController.java",
+      "candidate": "@GetMapping(\"/{id}\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/SeatController.java",
+      "candidate": "@GetMapping(\"/seat-id/{seatId}\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/SeatController.java",
+      "candidate": "@GetMapping(\"/status/{status}\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/SeatController.java",
+      "candidate": "@GetMapping(\"/available\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/SeatController.java",
+      "candidate": "@GetMapping(\"/row/{row}/col/{col}\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/SeatController.java",
+      "candidate": "@GetMapping(\"/statistics\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/SeatController.java",
+      "candidate": "@PostMapping(\"/initialize\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/SeatController.java",
+      "candidate": "@PostMapping(\"/randomize-attributes\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/SeatController.java",
+      "candidate": "@PutMapping(\"/{id}\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/SeatController.java",
+      "candidate": "@PostMapping(\"/{seatId}/book\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/SeatController.java",
+      "candidate": "@PostMapping(\"/{seatId}/cancel\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/SeatController.java",
+      "candidate": "@PostMapping(\"/checkin/{bookingId}\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/SeatController.java",
+      "candidate": "@PostMapping(\"/{seatId}/reset\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/SeatController.java",
+      "candidate": "@GetMapping(\"/user/{userId}/bookings\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/SeatController.java",
+      "candidate": "@GetMapping(\"/{seatId}/bookings\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/SeatController.java",
+      "candidate": "@DeleteMapping(\"/{id}\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/StudentController.java",
+      "candidate": "@RequestMapping(\"/api/students\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/StudentController.java",
+      "candidate": "@GetMapping(\"/{id}\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/StudentController.java",
+      "candidate": "@GetMapping(\"/student-id/{studentId}\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/StudentController.java",
+      "candidate": "@PutMapping(\"/{id}\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/StudentController.java",
+      "candidate": "@DeleteMapping(\"/{id}\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/StudentStatsController.java",
+      "candidate": "@RequestMapping(\"/api/student-stats\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/StudentStatsController.java",
+      "candidate": "@GetMapping(\"/{id}\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/StudentStatsController.java",
+      "candidate": "@GetMapping(\"/student/{studentId}\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/StudentStatsController.java",
+      "candidate": "@GetMapping(\"/name/{name}\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/StudentStatsController.java",
+      "candidate": "@GetMapping(\"/top\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/StudentStatsController.java",
+      "candidate": "@GetMapping(\"/system\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/StudentStatsController.java",
+      "candidate": "@GetMapping(\"/total-students\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/StudentStatsController.java",
+      "candidate": "@GetMapping(\"/total-bookings\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/StudentStatsController.java",
+      "candidate": "@PutMapping(\"/{id}\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/StudentStatsController.java",
+      "candidate": "@PostMapping(\"/booking\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/StudentStatsController.java",
+      "candidate": "@PostMapping(\"/cancellation\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/StudentStatsController.java",
+      "candidate": "@DeleteMapping(\"/{id}\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/SystemConfigController.java",
+      "candidate": "@RequestMapping(\"/api/system\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/SystemConfigController.java",
+      "candidate": "@GetMapping(\"/config\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/SystemConfigController.java",
+      "candidate": "@PutMapping(\"/config\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/UserController.java",
+      "candidate": "@RequestMapping(\"/api/users\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/UserController.java",
+      "candidate": "@GetMapping(\"/{id}\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/UserController.java",
+      "candidate": "@PutMapping(\"/{id}\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/UserController.java",
+      "candidate": "@DeleteMapping(\"/{id}\")"
+    },
+    {
+      "file": "src/main/java/com/example/controller/UserController.java",
+      "candidate": "@GetMapping(\"/{id}/integrity\")"
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+schema_version: "1.0"
+language: "zh-CN"
+encoding: "utf-8"
+
+profile:
+  name: "计算机科学与技术专业毕业设计标准"
+  school: "西安工业大学"
+  college: "计算机科学与工程学院"
+  major: "计算机科学与技术"
+  updated_at: "2026-05-09"
+  status: "confirmed"
+
+source_priority:
+  - level: 1
+    name: "学校毕业论文格式规范（毕业论文格式规范.docx / 格式规范.md）"
+    file_or_url: "G:/Java-lib/LunWen/格式规范.md"
+    enforce: true
+    confirmation_status: "confirmed"
+    notes: "理工类本科论文；A4；版芯38行×39字；行距固定18磅；小四号宋体正文；章标题三号宋体加粗居中；参考文献GB/T 7714"
+  - level: 2
+    name: "导师要求（开题报告、中期报告）"
+    file_or_url: "G:/Java-lib/LunWen/开题报告2022032618高磊(1).docx"
+    enforce: true
+    confirmation_status: "confirmed"
+    notes: "基于Vue的图书馆座位预约系统；前后端分离架构；WebSocket实时同步"
+  - level: 3
+    name: "教育部抽检和学术规范"
+    file_or_url: "https://www.moe.gov.cn/srcsite/A11/s7057/202101/t20210107_509019.html"
+    enforce: true
+    confirmation_status: "baseline"
+    notes: "选题意义、逻辑质量、专业能力、学术规范和真实性"
+  - level: 4
+    name: "国家标准 GB/T 7714"
+    file_or_url: "GB/T 7714-2015"
+    enforce: false
+    confirmation_status: "school_adopted"
+    notes: "参考文献格式按GB/T 7714"
+  - level: 5
+    name: "本套件通用默认规则"
+    file_or_url: "thesis-ai-standard/02-公开标准与高校规范来源.md"
+    enforce: false
+    confirmation_status: "fallback"
+    notes: "仅作为可替换默认值"
+
+conflict_resolution:
+  rule: "学校模板 > 导师要求 > 教育部/学术规范底线 > 学校指定国家标准 > 本套件默认规则"
+  unresolved: []
+
+standard_versions:
+  thesis_writing:
+    name: "GB/T 7713.1"
+    version: "2025"
+    use_policy: "学校未另行规定时作为结构和编排参考"
+  references:
+    name: "GB/T 7714"
+    version: "2015"
+    use_policy: "学校要求按GB/T 7714格式"
+  punctuation:
+    name: "GB/T 15834"
+    version: "2011"
+    use_policy: "用于中文标点一致性检查"
+
+format_defaults:
+  paper_size: "A4"
+  page_margin: "版芯38行×39字"
+  body_font: "小四号宋体（正文）；英文摘要小四号Times New Roman"
+  heading_numbering: "1、1.1、1.1.1（阿拉伯数字三级标题）"
+  figure_caption_position: "图题置于图下方，五号宋体居中"
+  table_caption_position: "表题置于表上方，五号宋体居中"
+  equation_numbering: "独立成行，编号居右，如（2.3）"
+  table_style: "三线表优先"
+  reference_citation: "正文引用上标〔〕序号，参考文献按出现顺序排列"
+
+content_rules:
+  abstract:
+    required: true
+    default_notes:
+      - "说明背景、目的、方法、结果、结论"
+      - "一般不放图表、公式和参考文献标注"
+  keywords:
+    default_count: "3-5"
+    notes: "术语覆盖研究对象、方法和应用领域"
+  conclusion:
+    notes:
+      - "总结已完成工作"
+      - "不新增正文没有展开的新功能或实验结果"
+      - "展望只写合理改进方向"
+
+academic_integrity:
+  forbid:
+    - "编造实验数据"
+    - "编造系统测试结果"
+    - "编造参考文献或DOI"
+    - "编造接口、数据库字段或代码路径"
+    - "在正文暴露AI协作过程"
+  require:
+    - "所有图表有证据来源"
+    - "所有测试结论有记录或截图支撑"
+    - "所有参考文献在正文中至少被引用一次"
+
+review_policy:
+  before_ai_generation:
+    - "先读取本文件"
+    - "再读取thesis-ai-spec.yaml"
+    - "再读取章节证据材料"
+  before_final_delivery:
+    - "检查章节编号和目录"
+    - "检查图表公式编号"
+    - "检查参考文献闭环"
+    - "检查学术诚信风险"
+    - "在Word或PDF中复核页面效果"

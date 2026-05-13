@@ -1,0 +1,78 @@
+# API Evidence
+
+## Possible API Files
+- `src/api/authApi.js`
+- `src/api/seatApi.js`
+- `src/api/studentApi.js`
+- `src/api/studentStatsApi.js`
+- `src/api/systemApi.js`
+- `src/api/userApi.js`
+- `src/main/java/com/example/controller/AuthController.java`
+- `src/main/java/com/example/controller/SeatController.java`
+- `src/main/java/com/example/controller/StudentController.java`
+- `src/main/java/com/example/controller/StudentStatsController.java`
+- `src/main/java/com/example/controller/SystemConfigController.java`
+- `src/main/java/com/example/controller/UserController.java`
+- `src/main/java/com/example/service/AuthService.java`
+- `src/main/java/com/example/service/impl/AuthServiceImpl.java`
+- `src/main/java/com/example/service/impl/UserServiceImpl.java`
+- `src/main/java/com/example/service/SeatService.java`
+- `src/main/java/com/example/service/SeatViewCacheService.java`
+- `src/main/java/com/example/service/StudentStatsService.java`
+- `src/main/java/com/example/service/UserService.java`
+- `src/main/java/com/example/websocket/SeatStatusWebSocketHandler.java`
+- `src/router/index.js`
+
+## Route Candidates
+- `src/main/java/com/example/controller/AuthController.java`: `@RequestMapping("/api/auth")`
+- `src/main/java/com/example/controller/AuthController.java`: `@PostMapping("/login")`
+- `src/main/java/com/example/controller/AuthController.java`: `@PostMapping("/register")`
+- `src/main/java/com/example/controller/AuthController.java`: `@PostMapping("/logout")`
+- `src/main/java/com/example/controller/AuthController.java`: `@GetMapping("/me")`
+- `src/main/java/com/example/controller/AuthController.java`: `@PostMapping("/refresh")`
+- `src/main/java/com/example/controller/AuthController.java`: `@PostMapping("/forgot-password")`
+- `src/main/java/com/example/controller/AuthController.java`: `@PostMapping("/reset-password")`
+- `src/main/java/com/example/controller/AuthController.java`: `@PostMapping("/change-password")`
+- `src/main/java/com/example/controller/SeatController.java`: `@RequestMapping("/api/seats")`
+- `src/main/java/com/example/controller/SeatController.java`: `@GetMapping("/bookings")`
+- `src/main/java/com/example/controller/SeatController.java`: `@GetMapping("/{id}")`
+- `src/main/java/com/example/controller/SeatController.java`: `@GetMapping("/seat-id/{seatId}")`
+- `src/main/java/com/example/controller/SeatController.java`: `@GetMapping("/status/{status}")`
+- `src/main/java/com/example/controller/SeatController.java`: `@GetMapping("/available")`
+- `src/main/java/com/example/controller/SeatController.java`: `@GetMapping("/row/{row}/col/{col}")`
+- `src/main/java/com/example/controller/SeatController.java`: `@GetMapping("/statistics")`
+- `src/main/java/com/example/controller/SeatController.java`: `@PostMapping("/initialize")`
+- `src/main/java/com/example/controller/SeatController.java`: `@PostMapping("/randomize-attributes")`
+- `src/main/java/com/example/controller/SeatController.java`: `@PutMapping("/{id}")`
+- `src/main/java/com/example/controller/SeatController.java`: `@PostMapping("/{seatId}/book")`
+- `src/main/java/com/example/controller/SeatController.java`: `@PostMapping("/{seatId}/cancel")`
+- `src/main/java/com/example/controller/SeatController.java`: `@PostMapping("/checkin/{bookingId}")`
+- `src/main/java/com/example/controller/SeatController.java`: `@PostMapping("/{seatId}/reset")`
+- `src/main/java/com/example/controller/SeatController.java`: `@GetMapping("/user/{userId}/bookings")`
+- `src/main/java/com/example/controller/SeatController.java`: `@GetMapping("/{seatId}/bookings")`
+- `src/main/java/com/example/controller/SeatController.java`: `@DeleteMapping("/{id}")`
+- `src/main/java/com/example/controller/StudentController.java`: `@RequestMapping("/api/students")`
+- `src/main/java/com/example/controller/StudentController.java`: `@GetMapping("/{id}")`
+- `src/main/java/com/example/controller/StudentController.java`: `@GetMapping("/student-id/{studentId}")`
+- `src/main/java/com/example/controller/StudentController.java`: `@PutMapping("/{id}")`
+- `src/main/java/com/example/controller/StudentController.java`: `@DeleteMapping("/{id}")`
+- `src/main/java/com/example/controller/StudentStatsController.java`: `@RequestMapping("/api/student-stats")`
+- `src/main/java/com/example/controller/StudentStatsController.java`: `@GetMapping("/{id}")`
+- `src/main/java/com/example/controller/StudentStatsController.java`: `@GetMapping("/student/{studentId}")`
+- `src/main/java/com/example/controller/StudentStatsController.java`: `@GetMapping("/name/{name}")`
+- `src/main/java/com/example/controller/StudentStatsController.java`: `@GetMapping("/top")`
+- `src/main/java/com/example/controller/StudentStatsController.java`: `@GetMapping("/system")`
+- `src/main/java/com/example/controller/StudentStatsController.java`: `@GetMapping("/total-students")`
+- `src/main/java/com/example/controller/StudentStatsController.java`: `@GetMapping("/total-bookings")`
+- `src/main/java/com/example/controller/StudentStatsController.java`: `@PutMapping("/{id}")`
+- `src/main/java/com/example/controller/StudentStatsController.java`: `@PostMapping("/booking")`
+- `src/main/java/com/example/controller/StudentStatsController.java`: `@PostMapping("/cancellation")`
+- `src/main/java/com/example/controller/StudentStatsController.java`: `@DeleteMapping("/{id}")`
+- `src/main/java/com/example/controller/SystemConfigController.java`: `@RequestMapping("/api/system")`
+- `src/main/java/com/example/controller/SystemConfigController.java`: `@GetMapping("/config")`
+- `src/main/java/com/example/controller/SystemConfigController.java`: `@PutMapping("/config")`
+- `src/main/java/com/example/controller/UserController.java`: `@RequestMapping("/api/users")`
+- `src/main/java/com/example/controller/UserController.java`: `@GetMapping("/{id}")`
+- `src/main/java/com/example/controller/UserController.java`: `@PutMapping("/{id}")`
+- `src/main/java/com/example/controller/UserController.java`: `@DeleteMapping("/{id}")`
+- `src/main/java/com/example/controller/UserController.java`: `@GetMapping("/{id}/integrity")`

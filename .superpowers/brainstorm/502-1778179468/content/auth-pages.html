@@ -1,0 +1,109 @@
+<h2>登录 / 注册 — 重设计方案</h2>
+<p class="subtitle">单栏居中布局 · 温暖表单 · 去掉侧边装饰卡片</p>
+
+<div class="split">
+  <div class="mockup">
+    <div class="mockup-header">登录页</div>
+    <div class="mockup-body">
+      <div style="min-height:100vh;background:linear-gradient(180deg,#faf8f5 0%,#f5f0e8 100%);display:grid;place-items:center;padding:2rem;font-family:Manrope,Inter,sans-serif;">
+        <div style="width:min(440px,100%);">
+          <!-- Brand -->
+          <div style="text-align:center;margin-bottom:2.5rem;">
+            <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#b45309,#d97706);margin:0 auto 1rem;display:grid;place-items:center;color:#fff;font-weight:800;font-size:1.3rem;">LS</div>
+            <div style="font-weight:800;color:#2d1f0c;font-size:1.3rem;">欢迎回来</div>
+            <div style="font-size:0.9rem;color:#8b7355;margin-top:0.4rem;">使用邮箱与密码登录座位预约系统</div>
+          </div>
+          <!-- Form -->
+          <div style="background:#fff;border-radius:20px;padding:2rem;border:1px solid #e8e2d8;">
+            <div style="display:grid;gap:1.2rem;">
+              <div>
+                <div style="font-size:0.82rem;font-weight:600;color:#6b5b4b;margin-bottom:0.4rem;">邮箱</div>
+                <input placeholder="name@example.com" style="width:100%;padding:0.8rem 1rem;border:1.5px solid #e8e2d8;border-radius:12px;font-size:0.95rem;font-family:Inter,sans-serif;background:#faf8f5;" />
+              </div>
+              <div>
+                <div style="font-size:0.82rem;font-weight:600;color:#6b5b4b;margin-bottom:0.4rem;">密码</div>
+                <input type="password" placeholder="请输入密码" style="width:100%;padding:0.8rem 1rem;border:1.5px solid #e8e2d8;border-radius:12px;font-size:0.95rem;font-family:Inter,sans-serif;background:#faf8f5;" />
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <div style="font-size:0.85rem;color:#8b7355;display:flex;align-items:center;gap:0.4rem;">
+                  <input type="checkbox" style="accent-color:#b45309;" />
+                  记住我
+                </div>
+                <div style="font-size:0.85rem;color:#b45309;font-weight:600;cursor:pointer;">忘记密码？</div>
+              </div>
+              <div style="padding:0.85rem;border-radius:999px;background:linear-gradient(135deg,#b45309,#d97706);color:#fff;font-weight:700;text-align:center;font-size:0.95rem;">登录</div>
+            </div>
+            <div style="text-align:center;margin-top:1.5rem;font-size:0.88rem;color:#8b7355;">
+              还没有账号？<span style="color:#b45309;font-weight:600;">立即注册</span>
+            </div>
+          </div>
+          <!-- Admin entry -->
+          <div style="text-align:center;margin-top:1rem;">
+            <div style="font-size:0.82rem;color:#a89880;font-weight:500;cursor:pointer;">管理员入口</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mockup">
+    <div class="mockup-header">注册页</div>
+    <div class="mockup-body">
+      <div style="min-height:100vh;background:linear-gradient(180deg,#faf8f5 0%,#f5f0e8 100%);display:grid;place-items:center;padding:2rem;font-family:Manrope,Inter,sans-serif;">
+        <div style="width:min(440px,100%);">
+          <!-- Brand -->
+          <div style="text-align:center;margin-bottom:2.5rem;">
+            <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#b45309,#d97706);margin:0 auto 1rem;display:grid;place-items:center;color:#fff;font-weight:800;font-size:1.3rem;">LS</div>
+            <div style="font-weight:800;color:#2d1f0c;font-size:1.3rem;">创建新账户</div>
+            <div style="font-size:0.9rem;color:#8b7355;margin-top:0.4rem;">填写资料后即可进入座位预约系统</div>
+          </div>
+          <!-- Form -->
+          <div style="background:#fff;border-radius:20px;padding:2rem;border:1px solid #e8e2d8;">
+            <div style="display:grid;gap:1.2rem;">
+              <div>
+                <div style="font-size:0.82rem;font-weight:600;color:#6b5b4b;margin-bottom:0.4rem;">用户名</div>
+                <input placeholder="请输入用户名" style="width:100%;padding:0.8rem 1rem;border:1.5px solid #e8e2d8;border-radius:12px;font-size:0.95rem;font-family:Inter,sans-serif;background:#faf8f5;" />
+              </div>
+              <div>
+                <div style="font-size:0.82rem;font-weight:600;color:#6b5b4b;margin-bottom:0.4rem;">邮箱</div>
+                <input placeholder="name@example.com" style="width:100%;padding:0.8rem 1rem;border:1.5px solid #e8e2d8;border-radius:12px;font-size:0.95rem;font-family:Inter,sans-serif;background:#faf8f5;" />
+              </div>
+              <div>
+                <div style="font-size:0.82rem;font-weight:600;color:#6b5b4b;margin-bottom:0.4rem;">密码</div>
+                <input type="password" placeholder="至少 6 位" style="width:100%;padding:0.8rem 1rem;border:1.5px solid #e8e2d8;border-radius:12px;font-size:0.95rem;font-family:Inter,sans-serif;background:#faf8f5;" />
+              </div>
+              <div>
+                <div style="font-size:0.82rem;font-weight:600;color:#6b5b4b;margin-bottom:0.4rem;">确认密码</div>
+                <input type="password" placeholder="再次输入密码" style="width:100%;padding:0.8rem 1rem;border:1.5px solid #e8e2d8;border-radius:12px;font-size:0.95rem;font-family:Inter,sans-serif;background:#faf8f5;" />
+              </div>
+              <div style="font-size:0.82rem;color:#8b7355;display:flex;align-items:center;gap:0.4rem;">
+                <input type="checkbox" style="accent-color:#b45309;" />
+                我已阅读并同意服务条款与隐私政策
+              </div>
+              <div style="padding:0.85rem;border-radius:999px;background:linear-gradient(135deg,#b45309,#d97706);color:#fff;font-weight:700;text-align:center;font-size:0.95rem;">创建账户</div>
+            </div>
+            <div style="text-align:center;margin-top:1.5rem;font-size:0.88rem;color:#8b7355;">
+              已有账号？<span style="color:#b45309;font-weight:600;">立即登录</span>
+            </div>
+          </div>
+          <!-- Admin entry -->
+          <div style="text-align:center;margin-top:1rem;">
+            <div style="font-size:0.82rem;color:#a89880;font-weight:500;cursor:pointer;">管理员入口</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top:1.5rem;">
+  <h3>设计要点</h3>
+  <ul style="color:#6b5b4b;line-height:1.8;">
+    <li><strong>单栏居中布局</strong> — 去掉右侧装饰卡片，聚焦表单本身</li>
+    <li><strong>暖色背景渐变</strong> — 与首页统一的暖纸白渐变</li>
+    <li><strong>LS Logo</strong> — 简化品牌标识，居中放置</li>
+    <li><strong>表单面板</strong> — 白色卡片 + 细边框，保持干净</li>
+    <li><strong>功能完整性</strong> — 记住我、忘记密码、条款确认、管理员入口全部保留</li>
+    <li><strong>API 接口照搬</strong> — authApi.login / authApi.register 调用不变</li>
+  </ul>
+</div>
