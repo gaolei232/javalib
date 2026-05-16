@@ -432,7 +432,7 @@ function stopAutoRefresh() {
 }
 
 function connectWebSocket() {
-  wsManager.connect('ws://localhost:8080/ws/seat-status')
+  wsManager.connect('ws://localhost:8081/ws/seat-status')
   seatStatusUpdateHandler = (data) => {
     if (data?.seat) updateSeatStatus(data.seat)
   }
@@ -777,7 +777,7 @@ function getBookingTimeStatus(booking) {
 .brand-sub { font-size: 0.72rem; color: var(--text-subtle); }
 
 .tab-bar { display: flex; gap: 0.35rem; background: var(--paper-warm); padding: 0.3rem; border-radius: var(--radius-pill); }
-.tab { padding: 0.45rem 1.2rem; border-radius: var(--radius-pill); font-weight: 500; font-size: 0.85rem; color: var(--text-soft); background: transparent; transition: all var(--ease-smooth); }
+.tab { flex: 1; padding: 0.45rem 1.2rem; border-radius: var(--radius-pill); font-weight: 500; font-size: 0.85rem; color: var(--text-soft); background: transparent; transition: all var(--ease-smooth); text-align: center; }
 .tab:hover { color: var(--text-body); }
 .tab.active { background: var(--card-pure); color: var(--text-body); font-weight: 700; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
 
@@ -949,7 +949,7 @@ function getBookingTimeStatus(booking) {
   .topbar { flex-direction: column; align-items: stretch; }
   .tab-bar { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
   .tab-bar::-webkit-scrollbar { display: none; }
-  .tab { white-space: nowrap; flex-shrink: 0; }
+  .tab { flex: none; white-space: nowrap; }
   .user-area { justify-content: center; }
   .seat-shell { grid-template-columns: 1fr; }
   .filter-bar { gap: 0.6rem; }
