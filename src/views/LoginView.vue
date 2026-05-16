@@ -284,6 +284,12 @@ const goAdminLogin = () => {
   color: var(--text-subtle);
 }
 
+@media (max-width: 768px) {
+  .auth-page { padding: 1.75rem 1.5rem; }
+  .auth-brand { margin-bottom: 1.5rem; }
+  .auth-brand h1 { font-size: 1.2rem; }
+}
+
 @media (max-width: 480px) {
   .auth-page {
     padding: 1.25rem 1rem;
@@ -292,5 +298,11 @@ const goAdminLogin = () => {
   .auth-card {
     padding: 1.5rem;
   }
+
+  .auth-brand h1 { font-size: 1.1rem; }
+  .auth-brand p { font-size: 0.82rem; }
+  .brand-mark { width: 44px; height: 44px; font-size: 1.1rem; }
+
+  .form-row { flex-direction: column; gap: 0.6rem; align-items: stretch; text-align: center; }
 }
 </style>

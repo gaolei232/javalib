@@ -43,42 +43,80 @@ const fetchUserDetail = async () => {
 <style scoped>
 .user-detail {
   width: 100%;
-  max-width: 800px;
+  max-width: 720px;
   margin: 0 auto;
   padding: 2rem;
 }
 
+.user-detail h1 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-strong);
+  margin-bottom: 1.5rem;
+}
+
 .user-info {
-  background: #f5f5f5;
-  padding: 20px;
-  border-radius: 8px;
-  text-align: left;
+  background: var(--card-pure);
+  padding: 1.5rem;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-warm);
 }
 
 .user-info p {
-  margin: 10px 0;
+  margin: 0.75rem 0;
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius-md);
+  background: var(--paper-warm);
+  color: var(--text-body);
+  font-size: 0.94rem;
+}
+
+.user-info p strong {
+  display: inline-block;
+  min-width: 60px;
+  color: var(--text-subtle);
 }
 
 .actions {
-  margin-top: 20px;
+  margin-top: 1.25rem;
 }
+
+.actions button {
+  padding: 0.65rem 1.6rem;
+  border-radius: var(--radius-pill);
+  background: var(--amber-gradient);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform var(--ease-smooth);
+  border: none;
+}
+.actions button:hover { transform: translateY(-2px); }
 
 .loading {
   text-align: center;
-  padding: 40px;
+  padding: 3rem;
+  color: var(--text-subtle);
+  font-size: 0.95rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .user-detail { padding: 1.5rem 1rem; }
+  .user-detail h1 { font-size: 1.3rem; }
 }
 
 @media (max-width: 640px) {
-  .user-detail {
-    padding: 1rem;
-  }
+  .user-detail { padding: 1rem 0.75rem; }
+  .user-info { padding: 1rem; }
+  .user-info p { padding: 0.55rem 0.75rem; font-size: 0.9rem; }
+  .actions button { width: 100%; }
+}
 
-  .user-info {
-    padding: 16px;
-  }
-
-  .actions button {
-    width: 100%;
-  }
+@media (max-width: 420px) {
+  .user-detail { padding: 0.75rem 0.5rem; }
+  .user-detail h1 { font-size: 1.15rem; }
+  .user-info { padding: 0.85rem; border-radius: var(--radius-lg); }
 }
 </style>

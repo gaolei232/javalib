@@ -1,14 +1,20 @@
 ﻿<template>
   <div class="aaa-page">
-    <div class="sidebar">
-      <div class="sidebar-header">图书馆座位管理</div>
+    <!-- 移动端遮罩 -->
+    <div v-if="showSidebar" class="sidebar-overlay" @click="showSidebar = false"></div>
+
+    <div class="sidebar" :class="{ 'sidebar-open': showSidebar }">
+      <div class="sidebar-header">
+        <span>图书馆座位管理</span>
+        <button class="sidebar-close" @click="showSidebar = false">&times;</button>
+      </div>
       <ul class="nav-menu">
         <li
           v-for="tab in tabs"
           :key="tab.id"
           class="nav-item"
           :class="{ active: currentTab === tab.id }"
-          @click="currentTab = tab.id"
+          @click="currentTab = tab.id; showSidebar = false"
         >
           {{ tab.icon }} {{ tab.name }}
         </li>
@@ -17,7 +23,12 @@
 
     <div class="main-content">
       <div class="top-header">
-        <h2>控制台</h2>
+        <div class="top-header-left">
+          <button class="hamburger" @click="showSidebar = !showSidebar">
+            <span></span><span></span><span></span>
+          </button>
+          <h2>控制台</h2>
+        </div>
         <div>欢迎, 管理员 Admin</div>
       </div>
 
@@ -189,6 +200,7 @@
 import { computed, reactive, ref } from 'vue'
 
 const currentTab = ref('overview')
+const showSidebar = ref(false)
 
 const tabs = [
   { id: 'overview', name: '数据总览', icon: '📊' },
@@ -584,34 +596,107 @@ tr:hover {
   margin-top: 20px;
 }
 
+/* ── Hamburger ── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 6px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2.5px;
+  border-radius: 2px;
+  background: var(--primary-color);
+}
+.top-header-left { display: flex; align-items: center; gap: 12px; }
+
+.sidebar-close { display: none; background: transparent; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; padding: 0 4px; line-height: 1; }
+
+.sidebar-overlay {
+  display: none;
+  position: fixed; inset: 0; z-index: 99;
+  background: rgba(0,0,0,0.35);
+}
+
 @media (max-width: 900px) {
-  .aaa-page {
-    flex-direction: column;
-  }
+  .aaa-page { flex-direction: column; }
+
+  .hamburger { display: flex; }
+  .sidebar-close { display: block; }
 
   .sidebar {
-    width: 100%;
+    position: fixed; top: 0; left: 0; bottom: 0; z-index: 100;
+    width: 260px;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.15);
   }
+  .sidebar.sidebar-open { transform: translateX(0); }
+  .sidebar-overlay { display: block; }
 
-  .main-content {
-    height: auto;
-    min-height: calc(100vh - 220px);
-  }
+  .sidebar-header { display: flex; justify-content: space-between; align-items: center; }
+
+  .main-content { height: auto; min-height: calc(100vh - 60px); }
 
   .top-header {
     padding: 12px 16px;
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    align-items: center;
     gap: 8px;
   }
 
-  .content-area {
-    padding: 16px;
-  }
+  .content-area { padding: 16px; }
 
-  .search-input {
-    width: 100%;
-    margin-right: 0;
-  }
+  .dashboard-cards { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+  .card { padding: 16px; }
+  .card .number { font-size: 1.5rem; }
+
+  .search-input { width: 100%; margin-right: 0; }
+  .search-row { flex-direction: column; gap: 8px; }
+
+  table { font-size: 0.85rem; }
+  th, td { padding: 8px 10px; }
+}
+
+@media (max-width: 640px) {
+  .top-header { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .content-area { padding: 12px; }
+
+  .dashboard-cards { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .card { padding: 14px; }
+  .card h3 { font-size: 0.85rem; }
+  .card .number { font-size: 1.3rem; }
+
+  .table-container { padding: 12px; overflow-x: auto; }
+  table { min-width: 500px; }
+
+  .seat-grid { grid-template-columns: repeat(auto-fill, minmax(48px, 1fr)); gap: 10px; }
+  .seat { height: 48px; font-size: 0.78rem; border-radius: 6px; }
+
+  .section-title { font-size: 1.1rem; margin-bottom: 12px; }
+  .legend-row { gap: 6px; font-size: 0.8rem; }
+
+  .chart-panel { min-width: 0; }
+}
+
+@media (max-width: 420px) {
+  .content-area { padding: 10px; }
+
+  .dashboard-cards { grid-template-columns: 1fr; }
+  .card { padding: 12px; }
+
+  .top-header h2 { font-size: 1rem; }
+
+  .seat-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .seat { height: 44px; font-size: 0.72rem; }
+  .seat:active { transform: scale(0.93); }
+
+  .btn { padding: 8px 12px; font-size: 0.82rem; width: 100%; }
+  td .btn { width: auto; }
 }
 </style>

@@ -254,6 +254,17 @@ input[type="checkbox"] {
   }
 }
 
+/* ── 减弱动画（无障碍） ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 /* ── 工具类 ── */
 .sr-only {
   position: absolute;

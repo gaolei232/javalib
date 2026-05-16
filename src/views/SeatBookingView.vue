@@ -30,7 +30,12 @@
     <!-- ── 座位预约 ── -->
     <section v-if="activeSection === 'seats'" class="section">
       <!-- 筛选面板 -->
-      <div class="filter-bar">
+      <button class="filter-toggle" @click="showFilters = !showFilters">
+        <span>{{ showFilters ? '收起筛选' : '展开筛选' }}</span>
+        <span class="filter-toggle-icon">{{ showFilters ? '▲' : '▼' }}</span>
+      </button>
+      <transition name="filter-collapse">
+        <div v-show="showFilters" class="filter-bar">
         <label class="filter-field">
           <span class="filter-label">楼栋</span>
           <select v-model="selectedBuildingCode">
@@ -73,6 +78,7 @@
           </select>
         </label>
       </div>
+      </transition>
 
       <!-- 图例 -->
       <div class="legend">
@@ -292,6 +298,7 @@ const seatDayBookings = ref([])
 const userBookings = ref([])
 const availableStartTimes = ref([])
 const availableEndTimes = ref([])
+const showFilters = ref(true)
 const showNotification = ref(false)
 const notificationMessage = ref('')
 const notificationType = ref('success')
@@ -787,6 +794,33 @@ function getBookingTimeStatus(booking) {
 .filter-field select, .filter-field input { min-height: 40px; padding: 0.45rem 0.75rem; font-size: 0.88rem; }
 .filter-sep { width: 1px; height: 40px; background: var(--border-warm); align-self: end; }
 
+/* ── Filter toggle (mobile) ── */
+.filter-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  width: 100%;
+  padding: 0.55rem 1rem;
+  border-radius: var(--radius-md);
+  background: var(--card-pure);
+  color: var(--text-soft);
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 1px solid var(--border-warm);
+  cursor: pointer;
+  transition: all var(--ease-smooth);
+}
+.filter-toggle:hover { color: var(--amber); border-color: var(--amber); }
+.filter-toggle-icon { font-size: 0.7rem; }
+
+.filter-collapse-enter-active { transition: all 0.25s ease; overflow: hidden; }
+.filter-collapse-leave-active { transition: all 0.2s ease; overflow: hidden; }
+.filter-collapse-enter-from,
+.filter-collapse-leave-to { opacity: 0; max-height: 0; margin-bottom: 0; }
+.filter-collapse-enter-to,
+.filter-collapse-leave-from { opacity: 1; max-height: 500px; }
+
 /* ── Legend ── */
 .legend { display: flex; gap: 1.2rem; flex-wrap: wrap; }
 .legend-chip { display: flex; align-items: center; gap: 0.4rem; font-size: 0.82rem; color: var(--text-muted); }
@@ -808,7 +842,7 @@ function getBookingTimeStatus(booking) {
 /* ── Seat map ── */
 .seat-map { display: grid; gap: 0.5rem; }
 .row { display: flex; align-items: center; gap: 0.4rem; }
-.row-label { width: 22px; text-align: right; font-size: 0.8rem; color: var(--text-subtle); font-weight: 600; }
+.row-label { text-align: right; font-size: 0.8rem; color: var(--text-subtle); font-weight: 600; min-width: 22px; }
 
 .seat {
   width: 48px; height: 48px; border-radius: 12px; display: flex; flex-direction: column;
@@ -913,22 +947,51 @@ function getBookingTimeStatus(booking) {
 /* ── Responsive ── */
 @media (max-width: 900px) {
   .topbar { flex-direction: column; align-items: stretch; }
+  .tab-bar { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .tab-bar::-webkit-scrollbar { display: none; }
+  .tab { white-space: nowrap; flex-shrink: 0; }
+  .user-area { justify-content: center; }
   .seat-shell { grid-template-columns: 1fr; }
+  .filter-bar { gap: 0.6rem; }
+  .filter-field select, .filter-field input { min-height: 44px; }
+  .seat { max-width: 52px; }
 }
 
 @media (max-width: 600px) {
   .booking-page { padding: 1rem 0.75rem 2rem; }
   .topbar { padding: 1rem; }
+  .tab { padding: 0.45rem 0.8rem; font-size: 0.8rem; }
   .card { padding: 1.25rem; }
-  .seat-map { overflow-x: auto; padding-bottom: 0.5rem; }
-  .row { min-width: 480px; }
-  .timeline-track { min-width: 480px; overflow-x: auto; }
+  .filter-toggle { display: flex; }
+  .filter-bar { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; padding: 1rem; }
+  .filter-sep { display: none; }
+  .time-row { flex-direction: column; align-items: stretch; }
+  .time-row .filter-field select { width: 100%; }
+  .row { display: grid; grid-template-columns: 22px repeat(5, 1fr); gap: 0.3rem; }
+  .seat { width: 100%; height: auto; aspect-ratio: 1; max-width: 52px; justify-self: center; }
+  .seat-num { font-size: 0.8rem; }
   .booking-row, .detail-btns { flex-direction: column; align-items: stretch; }
+  .profile-grid { grid-template-columns: 1fr; }
+  .stats-row { grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
+  .stat-item { padding: 0.5rem 0.3rem; }
+  .stat-num { font-size: 1.2rem; }
+  .timeline-track { grid-template-columns: repeat(14, 1fr); }
+  .timeline-cell { font-size: 0.6rem; }
 }
 
 @media (max-width: 420px) {
   .booking-page { padding: 0.75rem 0.5rem 1.5rem; }
-  .seat { width: 42px; height: 42px; }
-  .seat-num { font-size: 0.78rem; }
+  .filter-bar { grid-template-columns: 1fr; }
+  .tab { padding: 0.4rem 0.6rem; font-size: 0.75rem; }
+  .seat-map { gap: 0.35rem; }
+  .row { gap: 0.2rem; grid-template-columns: 18px repeat(5, 1fr); }
+  .row-label { font-size: 0.65rem; }
+  .seat { max-width: none; border-radius: 8px; }
+  .seat-num { font-size: 0.7rem; }
+  .seat-txt { font-size: 0.55rem; }
+  .stats-row { grid-template-columns: repeat(3, 1fr); gap: 0.4rem; }
+  .stat-num { font-size: 1rem; }
+  .stat-lbl { font-size: 0.65rem; }
+  .timeline-cell { font-size: 0.55rem; }
 }
 </style>
