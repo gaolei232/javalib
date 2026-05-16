@@ -26,22 +26,29 @@ jobs:
         key: ${{ secrets.SERVER_PRIVATE_KEY }}
         port: ${{ secrets.SERVER_PORT }}
         script: |
+          set -e
           cd /home/ci-cd/javalib
-          git pull origin main
 
-          # 后端构建
+          # 1. 强制同步最新代码（忽略本地未跟踪文件冲突）
+          git fetch origin main
+          git reset --hard origin/main
+
+          # 2. 后端构建
           mvn clean package -DskipTests
 
-          # 前端构建
-          npm install && npm run build
+          # 3. 前端构建（清理旧依赖并修复 vite 权限）
+          rm -rf node_modules dist
+          npm install
+          chmod +x node_modules/.bin/vite
+          npx vite build
 
-          # 部署后端
+          # 4. 部署后端
           sudo systemctl stop j-lib.service
           cp target/springboot-vue3-system-1.0.0.jar /home/springboot-vue3-system-1.0.0.jar
           sudo systemctl daemon-reload
           sudo systemctl start j-lib.service
 
-          # 部署前端
+          # 5. 部署前端
           sudo rm -rf /home/g/*
           sudo cp -r dist/* /home/g
           sudo systemctl restart nginx
