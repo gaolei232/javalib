@@ -19,8 +19,8 @@ public class StudentStatsController {
     private StudentStatsService studentStatsService;
 
     @GetMapping
-    public ResponseEntity<List<StudentStats>> getAllStudentStats() {
-        List<StudentStats> stats = studentStatsService.getAllStudentStats();
+    public ResponseEntity<List<Map<String, Object>>> getAllStudentStats() {
+        List<Map<String, Object>> stats = studentStatsService.getAllStudentStats();
         return ResponseEntity.ok(stats);
     }
 
@@ -49,8 +49,8 @@ public class StudentStatsController {
     }
 
     @GetMapping("/top")
-    public ResponseEntity<List<StudentStats>> getTopStudents() {
-        List<StudentStats> stats = studentStatsService.getTopStudentsByBookings();
+    public ResponseEntity<List<Map<String, Object>>> getTopStudents() {
+        List<Map<String, Object>> stats = studentStatsService.getTopStudentsByBookings();
         return ResponseEntity.ok(stats);
     }
 

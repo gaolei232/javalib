@@ -456,12 +456,37 @@ public class SeatService {
     }
 
     public Long getBookedSeatCount() {
-        Long count = seatBookingRepository.countByStatus(STATUS_BOOKED);
-        return count == null ? 0L : count;
+        return seatRepository.countByStatus(STATUS_BOOKED);
     }
 
     public Long getUsedSeatCount() {
         return seatRepository.countByStatus(STATUS_USED);
+    }
+
+    public Long getTotalSeatCount() {
+        return seatRepository.count();
+    }
+
+    public Map<String, Object> getDashboardStatistics() {
+        LocalDate today = LocalDate.now();
+        Long total = seatRepository.count();
+        Long todayBooked = seatBookingRepository.countDistinctBookedNotCheckedIn(today, STATUS_BOOKED);
+        Long todayUsed = seatBookingRepository.countDistinctCheckedIn(today);
+        Long futureBooked = seatBookingRepository.countDistinctFutureBooked(today, STATUS_BOOKED);
+
+        long available = Math.max(0, total - todayBooked - todayUsed - futureBooked);
+        int usageRate = total > 0
+            ? (int) Math.round((double) (todayBooked + todayUsed) / total * 100)
+            : 0;
+
+        Map<String, Object> stats = new HashMap<>();
+        stats.put("total", total);
+        stats.put("available", available);
+        stats.put("booked", todayBooked);
+        stats.put("used", todayUsed);
+        stats.put("futureBooked", futureBooked);
+        stats.put("usageRate", usageRate);
+        return stats;
     }
 
     public Map<String, Object> checkin(Long bookingId, String userId) {

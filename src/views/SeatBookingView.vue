@@ -432,7 +432,7 @@ function stopAutoRefresh() {
 }
 
 function connectWebSocket() {
-  wsManager.connect('ws://localhost:8081/ws/seat-status')
+  wsManager.connect('ws://' + window.location.hostname + ':8081/ws/seat-status')
   seatStatusUpdateHandler = (data) => {
     if (data?.seat) updateSeatStatus(data.seat)
   }

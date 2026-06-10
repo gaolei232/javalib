@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Duration;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,13 +30,15 @@ public class StudentStatsService {
     @Autowired
     private SeatBookingRepository seatBookingRepository;
 
-    public List<StudentStats> getAllStudentStats() {
-        List<StudentStats> stats = studentStatsRepository.findAll();
-        if (stats.isEmpty()) {
-            rebuildStatsFromBookings();
-            stats = studentStatsRepository.findAll();
+    public List<Map<String, Object>> getAllStudentStats() {
+        List<User> users = userRepository.findAll();
+        List<SeatBooking> allBookings = seatBookingRepository.findAll();
+        List<Map<String, Object>> result = new ArrayList<>();
+        for (User user : users) {
+            if ("ADMIN".equalsIgnoreCase(user.getRole())) continue;
+            result.add(computeStatsForUser(user, allBookings));
         }
-        return stats;
+        return result;
     }
 
     public StudentStats getStudentStatsById(Long id) {
@@ -49,13 +53,48 @@ public class StudentStatsService {
         return studentStatsRepository.findByStudentNameContaining(name);
     }
 
-    public List<StudentStats> getTopStudentsByBookings() {
-        List<StudentStats> stats = studentStatsRepository.findAllByOrderByTotalBookingsDesc();
-        if (stats.isEmpty()) {
-            rebuildStatsFromBookings();
-            stats = studentStatsRepository.findAllByOrderByTotalBookingsDesc();
+    public List<Map<String, Object>> getTopStudentsByBookings() {
+        List<Map<String, Object>> allStats = getAllStudentStats();
+        allStats.sort((a, b) -> Integer.compare(
+            ((Number) b.get("totalBookings")).intValue(),
+            ((Number) a.get("totalBookings")).intValue()
+        ));
+        return allStats;
+    }
+
+    private Map<String, Object> computeStatsForUser(User user, List<SeatBooking> allBookings) {
+        Long studentId = user.getId();
+        int total = 0, completed = 0, cancelled = 0;
+        long totalMinutes = 0;
+        LocalDate lastDate = null;
+
+        for (SeatBooking booking : allBookings) {
+            if (!String.valueOf(studentId).equals(booking.getUserId())) continue;
+            total++;
+            if ("BOOKED".equals(booking.getStatus())) {
+                completed++;
+            } else if ("CANCELLED".equals(booking.getStatus()) || "EXPIRED".equals(booking.getStatus())) {
+                cancelled++;
+            }
+            if (booking.getStartTime() != null && booking.getEndTime() != null) {
+                totalMinutes += Duration.between(booking.getStartTime(), booking.getEndTime()).toMinutes();
+            }
+            if (booking.getBookingDate() != null && (lastDate == null || booking.getBookingDate().isAfter(lastDate))) {
+                lastDate = booking.getBookingDate();
+            }
         }
-        return stats;
+
+        double hours = Math.round(totalMinutes / 60.0 * 10.0) / 10.0;
+        Map<String, Object> stat = new HashMap<>();
+        stat.put("id", studentId);
+        stat.put("studentId", studentId);
+        stat.put("studentName", user.getName());
+        stat.put("totalBookings", total);
+        stat.put("completedBookings", completed);
+        stat.put("cancelledBookings", cancelled);
+        stat.put("totalHours", hours);
+        stat.put("lastBookingDate", lastDate);
+        return stat;
     }
 
     public StudentStats createStudentStats(StudentStats stats) {
@@ -132,6 +171,7 @@ public class StudentStatsService {
     @Transactional
     public void rebuildStatsFromBookings() {
         List<User> users = userRepository.findAll();
+        List<SeatBooking> allBookings = seatBookingRepository.findAll();
 
         for (User user : users) {
             if ("ADMIN".equalsIgnoreCase(user.getRole())) {
@@ -139,24 +179,22 @@ public class StudentStatsService {
             }
 
             Long studentId = user.getId();
-            String studentName = user.getName();
-
-            List<SeatBooking> allBookings = seatBookingRepository.findAll();
-            int total = 0;
-            int completed = 0;
-            int cancelled = 0;
+            int total = 0, completed = 0, cancelled = 0;
+            long totalMinutes = 0;
             LocalDate lastDate = null;
 
             for (SeatBooking booking : allBookings) {
-                if (!String.valueOf(studentId).equals(booking.getUserId())) {
-                    continue;
-                }
+                if (!String.valueOf(studentId).equals(booking.getUserId())) continue;
 
                 total++;
                 if ("BOOKED".equals(booking.getStatus())) {
                     completed++;
                 } else if ("CANCELLED".equals(booking.getStatus())) {
                     cancelled++;
+                }
+
+                if (booking.getStartTime() != null && booking.getEndTime() != null) {
+                    totalMinutes += Duration.between(booking.getStartTime(), booking.getEndTime()).toMinutes();
                 }
 
                 if (booking.getBookingDate() != null && (lastDate == null || booking.getBookingDate().isAfter(lastDate))) {
@@ -167,11 +205,11 @@ public class StudentStatsService {
             Optional<StudentStats> exists = studentStatsRepository.findByStudentId(studentId);
             StudentStats stats = exists.orElseGet(StudentStats::new);
             stats.setStudentId(studentId);
-            stats.setStudentName(studentName);
+            stats.setStudentName(user.getName());
             stats.setTotalBookings(total);
             stats.setCompletedBookings(completed);
             stats.setCancelledBookings(cancelled);
-            stats.setTotalHours(completed * 3);
+            stats.setTotalHours((int) Math.round(totalMinutes / 60.0));
             stats.setLastBookingDate(lastDate);
             studentStatsRepository.save(stats);
         }
@@ -186,12 +224,19 @@ public class StudentStatsService {
         long completedBookings = allBookings.stream().filter(b -> "BOOKED".equals(b.getStatus())).count();
         long cancelledBookings = allBookings.stream().filter(b -> "CANCELLED".equals(b.getStatus())).count();
 
+        long totalMinutes = allBookings.stream()
+            .filter(b -> b.getStartTime() != null && b.getEndTime() != null)
+            .mapToLong(b -> Duration.between(b.getStartTime(), b.getEndTime()).toMinutes())
+            .sum();
+        double avgHours = totalStudents == 0 ? 0
+            : Math.round((totalMinutes / 60.0 / totalStudents) * 10.0) / 10.0;
+
         Map<String, Object> stats = new HashMap<>();
         stats.put("totalStudents", totalStudents);
         stats.put("totalBookings", totalBookings);
         stats.put("completedBookings", completedBookings);
         stats.put("cancelledBookings", cancelledBookings);
-        stats.put("avgHours", totalStudents == 0 ? 0 : Math.round((completedBookings * 3.0 / totalStudents) * 10.0) / 10.0);
+        stats.put("avgHours", avgHours);
         return stats;
     }
 

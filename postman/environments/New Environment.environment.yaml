@@ -1,0 +1,4 @@
+name: New Environment
+values:
+  - key: POSTMAN_SET_CHARSET
+    value: ''

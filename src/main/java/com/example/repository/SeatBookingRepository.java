@@ -58,5 +58,14 @@ public interface SeatBookingRepository extends JpaRepository<SeatBooking, Long> 
     @Query("SELECT COUNT(b) FROM SeatBooking b WHERE b.userId = :userId AND b.checkedIn = true")
     Long countCheckedInByUserId(@Param("userId") String userId);
 
+    @Query("SELECT COUNT(DISTINCT b.seatId) FROM SeatBooking b WHERE b.bookingDate = :date AND b.status = :status AND (b.checkedIn IS NULL OR b.checkedIn = false)")
+    Long countDistinctBookedNotCheckedIn(@Param("date") LocalDate date, @Param("status") String status);
+
+    @Query("SELECT COUNT(DISTINCT b.seatId) FROM SeatBooking b WHERE b.bookingDate = :date AND b.checkedIn = true")
+    Long countDistinctCheckedIn(@Param("date") LocalDate date);
+
+    @Query("SELECT COUNT(DISTINCT b.seatId) FROM SeatBooking b WHERE b.bookingDate > :date AND b.status = :status")
+    Long countDistinctFutureBooked(@Param("date") LocalDate date, @Param("status") String status);
+
     List<SeatBooking> findByUserIdOrderByCreatedAtDesc(String userId);
 }

@@ -1,0 +1,1346 @@
+{
+  "schema_version": "1.0",
+  "source": "G:\\Java-lib\\c.md",
+  "summary": {
+    "overall_risk": "low",
+    "paragraph_count": 144,
+    "risk_counts": {
+      "clear": 130,
+      "low": 14,
+      "medium": 0,
+      "high": 0
+    },
+    "pattern_counts": {
+      "filler_phrase": 1,
+      "rigid_sequence": 4,
+      "summary_tail": 3
+    },
+    "hard_failures": []
+  },
+  "findings": [
+    {
+      "paragraph": 1,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "基于 Vue 的图书馆考研教室座位预约系统设计与实现 摘要 高校图书馆的空间管理正在从人工登记向数字化服务过渡，在这一过程中，座位资源的利用效率、预约冲突的协调能力以及状态更新的及时性，直接影响读者的使用感受和图书馆的服务水平。考研备考、高"
+    },
+    {
+      "paragraph": 2,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "本文在分析图书馆座位预约业务流程的基础上，前端采用Vue 3、Vue Router、Pinia和Axios构建交互界面，后端采用Spring Boot、Spring Data JPA和MySQL提供数据服务，并通过WebSocket完成座位"
+    },
+    {
+      "paragraph": 3,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "测试结果表明，该设计方案能够处理座位管理中的实际业务问题，在改善预约体验和管理效率的同时保持了较好的稳定性与易用性。目前系统在安全验证、数据统计粒度以及管理设置的统一持久化方面仍较为基础，后续可从加强身份安全保护、细化座位使用规则、挖掘预约"
+    },
+    {
+      "paragraph": 4,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "关键词：Vue；Spring Boot；座位预约系统；前后端分离；WebSocket"
+    },
+    {
+      "paragraph": 5,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "Design and Implementation of a Vue-based Seat Reservation System for Library Exam Rooms for Postgraduate Entrance Examin"
+    },
+    {
+      "paragraph": 6,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "Based on an analysis of seat reservation workflows, the front end is built with Vue 3, Vue Router, Pinia, and Axios, whi"
+    },
+    {
+      "paragraph": 7,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "Test results show that the design handles practical seat-management problems effectively, achieving reasonable stability"
+    },
+    {
+      "paragraph": 8,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "Key Words: Vue; Spring Boot; library seat reservation; front-end and back-end separation; WebSocket 目录  中文摘要 2 Abstract "
+    },
+    {
+      "paragraph": 9,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "1 绪论 1.1 研究背景与意义 图书馆是高校学习支持体系中的关键一环，其空间管理质量直接关系到学生的日常学习体验。移动互联网应用的普及让读者对图书馆服务的期待超过了传统的文献借阅范围，座位预约、研讨空间使用等场景变得越来越常见。在考研备考"
+    },
+    {
+      "paragraph": 10,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "从国内高校的实践来看，部分图书馆已经将座位管理纳入常态化数字服务。清华大学图书馆的座位管理系统已与微信公众号服务打通，并明确要求阅览座位须通过预约系统使用[1]。喀什大学图书馆也面向读者推出了座位预约服务，集成了现场签到、暂离与暂退功能[2"
+    },
+    {
+      "paragraph": 11,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "从技术层面看，图书馆座位预约系统的技术构成并不简单。它不是一套静态的信息展示页面，而是一个包含用户身份识别、规则约束、资源状态维护、并发预约冲突控制和数据统计分析的综合性Web系统。对于计算机专业本科毕业设计来说，这类系统在工程实践方面有比"
+    },
+    {
+      "paragraph": 12,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "因此，\"基于Vue的考研图书馆座位预约系统\"这一选题既有明确的现实应用场景，也具备完整的技术实现条件。通过本课题的研究与实现，可以为高校图书馆在考研和自习场景下的座位资源管理提供一个可实施的技术方案，同时也为基于前后端分离架构的Web管理系"
+    },
+    {
+      "paragraph": 13,
+      "score": 1,
+      "risk": "low",
+      "patterns": [
+        "summary_tail"
+      ],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "1.2 国内研究现状 国内围绕图书馆座位预约和学习空间管理的研究，主要集中在预约规则设计、平台接入方式和服务流程改造几个方面。沈梦轩、游晓丹针对公共图书馆预约占座系统的构建，分析了基于微信公众号的预约服务模式。他们的工作表明，预约入口迁移到"
+    },
+    {
+      "paragraph": 14,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "与此同时，国内高校图书馆在实际运营层面也呈现出规则不断细化的趋势。喀什大学图书馆的座位使用规则已经对预约使用作出了明确约束，并通过线上系统实现统一管理[2]。这类实践反映出国内图书馆空间管理正在形成\"规则公开化、预约流程线上化、座位资源动态"
+    },
+    {
+      "paragraph": 15,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "1.3 国外研究现状 国外在学习空间预约与资源利用方面的研究和实践起步相对更早。Atkinson和Lee以福特汉姆大学图书馆为案例，对学习空间预约软件的试点应用进行了分析。他们的研究指出，学习空间预约系统的价值不只是改善读者的使用体验，还在"
+    },
+    {
+      "paragraph": 16,
+      "score": 1,
+      "risk": "low",
+      "patterns": [
+        "rigid_sequence"
+      ],
+      "cliche_terms": [
+        "进一步"
+      ],
+      "repeated_start": false,
+      "text_preview": "综合国内外已有的研究和实践，图书馆座位预约系统具备了比较清晰的业务基础，但仍有几个问题值得进一步研究。第一，不少研究对预约逻辑的描述停留在宏观层面，缺少面向具体实现的冲突控制策略分析。第二，部分系统虽然能够完成预约记录的存储，却难以在界面上"
+    },
+    {
+      "paragraph": 17,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "1.4 论文主要研究内容 围绕图书馆座位预约业务，本文的研究内容包含以下几个方面："
+    },
+    {
+      "paragraph": 18,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "(1) 分析考研备考和高频自习场景下图书馆座位的使用需求，梳理普通用户和管理员两类角色的核心业务诉求，界定系统应覆盖的功能范围。"
+    },
+    {
+      "paragraph": 19,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "(2) 基于前后端分离的思路进行系统总体架构设计，划分前端界面层、业务接口层、持久化层以及实时通信层的职责边界。"
+    },
+    {
+      "paragraph": 20,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "(3) 结合项目源码对数据库结构进行设计与整理，围绕用户、座位、预约记录和学生统计四类核心数据实体建立逻辑模型。"
+    },
+    {
+      "paragraph": 21,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "(4) 在系统实现层面，重点分析预约冲突控制算法、座位状态的动态维护机制以及WebSocket实时广播机制，并讨论这些设计如何保证系统的业务一致性。"
+    },
+    {
+      "paragraph": 22,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "(5) 在测试层面，结合编译结果、接口验证数据和消息推送验证数据，对系统的主要功能及其实现效果进行评价。"
+    },
+    {
+      "paragraph": 23,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "本文的研究目标不是追求功能数量的堆叠，而是希望在一个有典型应用背景的Web系统中，体现比较完整的软件开发思路和关键技术的实现过程。具体来说，本系统期望达成以下目标：交付一套可运行的图书馆座位预约系统原型；在系统中建立清晰的时间区间预约规则和"
+    },
+    {
+      "paragraph": 24,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "1.5 论文章节安排 本文共分为7个章节，结构安排如下："
+    },
+    {
+      "paragraph": 25,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "第1章为绪论，介绍课题的研究背景、国内外研究现状、研究内容以及论文的整体结构。"
+    },
+    {
+      "paragraph": 26,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "第2章为相关技术与理论基础，重点阐述Vue 3、Spring Boot、Spring Data JPA、MySQL、WebSocket以及前后端分离相关的技术内容。"
+    },
+    {
+      "paragraph": 27,
+      "score": 1,
+      "risk": "low",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": true,
+      "text_preview": "第3章为系统需求分析，从业务场景、功能需求与非功能需求几个角度说明系统的建设目标。"
+    },
+    {
+      "paragraph": 28,
+      "score": 1,
+      "risk": "low",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": true,
+      "text_preview": "第4章为系统总体设计，介绍系统的体系架构、功能模块划分、数据库设计和业务流程设计。"
+    },
+    {
+      "paragraph": 29,
+      "score": 1,
+      "risk": "low",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": true,
+      "text_preview": "第5章为系统详细设计与实现，围绕用户认证、座位预约、状态同步、后台管理和统计功能展开具体分析。"
+    },
+    {
+      "paragraph": 30,
+      "score": 1,
+      "risk": "low",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": true,
+      "text_preview": "第6章为系统测试与结果分析，结合实际的编译输出与接口测试数据，对系统功能的实现情况进行验证。"
+    },
+    {
+      "paragraph": 31,
+      "score": 1,
+      "risk": "low",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": true,
+      "text_preview": "第7章为结论，总结全文工作并指出后续可改进的方向。"
+    },
+    {
+      "paragraph": 32,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "2 项目开发技术与理论基础 2.1 Vue 3前端框架 Vue 3是目前应用较广泛的渐进式前端框架，核心特点是组件化开发、响应式数据驱动和灵活的页面组合能力[7]。图书馆座位预约系统的前端不只是展示若干静态页面，还需要处理登录状态维持、预约"
+    },
+    {
+      "paragraph": 33,
+      "score": 1,
+      "risk": "low",
+      "patterns": [
+        "rigid_sequence"
+      ],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "在本系统中，Vue 3的引入主要发挥了三个作用。第一，组件化机制让登录页、注册页、座位预约页和管理员控制台等页面可以按业务功能独立拆分，方便后续的维护和扩展。第二，响应式数据机制可以驱动座位状态、已预约时段和个人预约记录的实时更新，使界面呈"
+    },
+    {
+      "paragraph": 34,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "2.2 Springboot后端开发框架 Spring Boot构建在Spring生态之上，强调约定优于配置、自动装配和独立部署[8]。在传统的Java Web开发流程中，开发者需要花费不少精力处理配置文件、容器整合和依赖管理，而Sprin"
+    },
+    {
+      "paragraph": 35,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "在本系统中，后端不仅要承担用户认证、业务规则校验和数据持久化等任务，还需要为前端提供结构清晰的RESTful接口。Spring Boot与Spring MVC的组合，使得控制层、业务层与数据层能够保持比较清晰的职责划分：Controller"
+    },
+    {
+      "paragraph": 36,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "2.3 Spring Data JPA与MySQL数据持久化技术 Spring Data JPA是在JPA规范之上提供的高层封装，通过接口定义和方法命名约定来简化数据库访问[9]。图书馆座位预约系统需要频繁处理用户信息、座位资源、预约记录和"
+    },
+    {
+      "paragraph": 37,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "MySQL作为一种成熟的关系型数据库管理系统，在事务支持、结构化查询、索引管理和生态兼容性方面都有不错的表现[10]。图书馆座位预约业务的数据天然具有关系型特征——用户与预约记录之间的关联、座位资源与时间段之间的状态映射，都是典型的例子——"
+    },
+    {
+      "paragraph": 38,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "2.4 WebSocket实时通信技术 WebSocket协议在客户端和服务器之间建立了一条持久化的全双工通信通道。与传统的HTTP请求—响应模式相比，WebSocket的一个关键区别是：服务端在连接建立之后可以主动向客户端推送消息，而不必"
+    },
+    {
+      "paragraph": 39,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "在图书馆座位预约的场景中，座位状态的时效性会直接影响用户的决策。如果系统仅仅依靠前端定时轮询接口来刷新状态，就会带来两个问题：请求频率高时会增加服务器的负担；在轮询间隔之内，用户看到的座位状态可能已经过时。引入WebSocket之后，后端在"
+    },
+    {
+      "paragraph": 40,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "WebSocket在本系统的运行示意图如下图 2.1所示。"
+    },
+    {
+      "paragraph": 41,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "图 2.1 WebSocket运行示意图 2.5 前后端分离与状态管理技术 前后端分离模式的核心思路是将界面呈现逻辑与业务服务逻辑解耦，前端通过接口访问后端服务，后端则专注于业务处理与数据存储。对本系统而言，这种模式有两点直接的好处。一方面"
+    },
+    {
+      "paragraph": 42,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "在具体实现中，Pinia负责管理用户、令牌和权限等全局状态，Axios负责向后端发送HTTP请求并统一附加身份令牌。这种技术组合使得系统在用户登录后能够维持稳定的会话状态，并在不同页面之间共享必要的身份信息。配合路由守卫机制，系统能够在页面"
+    },
+    {
+      "paragraph": 43,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "2.6 本章小结 本章对系统所依赖的核心技术进行了梳理。Vue 3为前端交互提供了组件化和响应式的基础，Spring Boot为后端业务服务提供了清晰的分层支撑，JPA与MySQL支撑了结构化数据的管理，WebSocket为实时状态同步提供"
+    },
+    {
+      "paragraph": 44,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "3 系统需求分析 3.1 系统应用场景分析 考研图书馆座位预约系统的服务对象可以分为两类：高频自习用户和图书馆管理人员。对普通用户来说，在实际使用中最关心的通常是三个问题——当前还有没有空位、目标座位在自己计划的学习时间段内是否可用、已经预"
+    },
+    {
+      "paragraph": 45,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "管理员面对的则是偏资源治理的问题。一方面，管理员需要及时了解座位的总量、预约量和使用情况，以便判断馆内空间的利用效率；另一方面，管理员也要对用户信息、预约记录和异常状态进行维护。如果缺少一个统一的后台入口，管理员往往需要在多张表或多个页面之"
+    },
+    {
+      "paragraph": 46,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "因此，本系统不是一个单纯的座位查询工具，它同时面向\"用户快速决策\"和\"管理员集中治理\"两类目标。需求分析必须覆盖两种角色的差异化诉求，后续的设计才可能有的放矢。"
+    },
+    {
+      "paragraph": 47,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "3.2 功能需求分析 3.2.1 普通用户功能需求 普通用户的功能围绕\"登录—选座—预约—查看—取消\"这条主线展开。系统需要支持用户完成注册和登录，并在登录后保持会话状态，减少重复登录的操作成本。在选座环节，系统应支持按日期查看座位情况，并"
+    },
+    {
+      "paragraph": 48,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "从分析的角度来看，普通用户的核心需求并不只是\"把预约提交成功\"，而是要尽可能降低无效操作和重复判断的成本。因此前端在交互层必须提前过滤不可选的时间段，后端则需要保证最终的冲突校验准确无误。"
+    },
+    {
+      "paragraph": 49,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "3.2.2 管理员功能需求 管理员端的功能主要包括系统概览、预约管理、用户管理、座位管理和统计管理。系统概览需要展示总用户数、总座位数、预约数量和使用率等关键指标，让管理员能够快速了解系统的运行状况。预约管理需要支持按日期、状态和关键字筛选"
+    },
+    {
+      "paragraph": 50,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "管理员需求的核心在于集中化和可视化。如果系统只能完成数据记录，却不能通过后台控制台进行统一管理，那么系统的管理价值会大打折扣。"
+    },
+    {
+      "paragraph": 51,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "3.2.3 实时同步与统计需求 除了基本业务功能之外，本系统还需要满足实时同步和统计支撑的需求。实时同步的主要表现是：当某个用户完成预约或取消预约之后，其他在线用户应当尽快看到更新后的座位状态，避免基于过时的信息继续操作。统计需求则体现在："
+    },
+    {
+      "paragraph": 52,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "从系统定位上看，实时同步解决的是\"状态是否及时\"的问题，统计功能解决的是\"管理是否有依据\"的问题，两者共同把系统从\"能用\"推向\"好用\"。"
+    },
+    {
+      "paragraph": 53,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "3.3 非功能需求分析 3.3.1 易用性需求 图书馆座位预约系统的用户群体比较广泛，操作界面应当尽量简洁清晰，避免因流程复杂而产生使用阻力。在前端交互设计上，用户应能够在较短的时间内完成日期选择、座位识别和时间段预约。系统借助颜色区分、状"
+    },
+    {
+      "paragraph": 54,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "3.3.2 可靠性需求 可靠性主要体现在预约冲突控制以及状态维护的一致性上。系统必须保证同一座位在同一时间段内不会被重复预约，同时还要在预约取消、预约过期等状态变化之后，及时修正座位的可用性。如果这些逻辑处理存在不一致，即便界面设计得再友好"
+    },
+    {
+      "paragraph": 55,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "3.3.3 安全性需求 安全性需求主要涉及身份识别、密码安全和角色区分。系统至少应保证用户密码不以明文形式存储，并能够区分普通用户与管理员的访问权限。对于后台管理页面，需要阻止未授权用户的直接进入。当前项目的权限控制仍以基础实现为主，但从需"
+    },
+    {
+      "paragraph": 56,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "3.3.4 可维护性需求 系统应采用清晰的分层结构和模块划分，使不同功能之间保持明确的边界。当前项目采用前后端分离和服务层封装的思路，已具备较好的可维护基础。对于本科毕业设计而言，可维护性不仅关系到后续的升级成本，也会直接影响论文中系统工程"
+    },
+    {
+      "paragraph": 57,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "3.4 可行性分析 从技术可行性来看，Vue 3、Spring Boot、MySQL、JPA和WebSocket等技术栈都已经比较成熟，社区支持和实际应用基础都比较扎实，能够支撑系统的开发工作。项目源码已经实现了主要模块，说明系统在技术层面"
+    },
+    {
+      "paragraph": 58,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "3.5 本章小结 本章从业务场景、功能需求、非功能需求和可行性四个层面对系统的建设目标进行了界定。通过分析可以明确一个判断：考研图书馆座位预约系统的关键不在于\"实现预约\"这个单一动作，而在于围绕预约建立一套可理解、可执行、可维护的业务规则体"
+    },
+    {
+      "paragraph": 59,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "4 系统总体设计 4.1 系统总体架构设计 本系统采用前后端分离架构。前端负责页面呈现、交互控制和局部状态刷新；后端负责身份认证、规则校验、数据持久化和实时消息推送；数据库负责核心业务数据的存储。其逻辑结构可以概括为\"前端展示层—业务接口层"
+    },
+    {
+      "paragraph": 60,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "这种架构设计带来了两方面的直接优势。一方面是界面层与业务层相互解耦——前端页面的调整不会直接影响后端服务逻辑，后端规则的调整也可以通过接口形式对前端保持透明。另一方面，系统能够比较方便地扩展新的访问终端（移动端、小程序端或自助终端），而不必"
+    },
+    {
+      "paragraph": 61,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "在本项目中，前端通过Axios访问后端REST接口，后端基于Spring MVC接收请求并调用Service层完成业务处理；当座位状态发生变化时，后端再通过WebSocket向前端广播最新状态。这种\"HTTP完成业务提交，WebSocket"
+    },
+    {
+      "paragraph": 62,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "系统架构图如下图4.1所示。"
+    },
+    {
+      "paragraph": 63,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "图 4.1 系统架构图 4.2 系统功能模块设计 系统功能模块图如下图 4.2所示。"
+    },
+    {
+      "paragraph": 64,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "图 4.2 系统功能模块图 4.2.1 用户认证模块设计 用户认证模块负责系统的入口控制，包括注册、登录、退出登录、当前用户信息获取和会话维护。该模块的设计思路是：后端完成身份校验并返回令牌，前端负责保存令牌和用户信息，并在页面跳转时根据角"
+    },
+    {
+      "paragraph": 65,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "4.2.2 座位预约模块设计 座位预约模块是系统的核心模块，由座位展示、时段查询、预约提交、取消预约和个人记录查询等子功能组成。与传统的固定时间段预约方式不同，本系统采用起止时间组合的方式，允许用户在开放时段范围内灵活选择学习区间，更贴合真"
+    },
+    {
+      "paragraph": 66,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "4.2.3 管理员后台模块设计 管理员后台模块采用控制台式单页结构，划分为数据总览、预约管理、用户管理、座位管理、学生统计和系统设置等功能区域。该模块的设计目标不是提供复杂的报表系统，而是建立一个能够快速定位问题、集中维护数据的管理界面。"
+    },
+    {
+      "paragraph": 67,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "4.2.4 实时通信模块设计 实时通信模块基于WebSocket实现。服务端负责维护连接会话集合，并在座位状态变化之后广播消息；客户端负责建立连接、监听消息和更新页面状态。在座位预约这一具体场景中，WebSocket提供的即时信息传输能力是"
+    },
+    {
+      "paragraph": 68,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "4.3 数据库设计 数据库设计E-R图如下图 4.3所示。"
+    },
+    {
+      "paragraph": 69,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "图 4.3 数据库E-R图 4.3.1 概念结构设计 结合系统的业务模型，可以抽象出四个核心实体：用户、座位、预约记录和学生统计。用户实体描述系统使用者的身份信息与角色信息；座位实体描述馆内座位资源及其当前状态；预约记录实体表示用户在特定日"
+    },
+    {
+      "paragraph": 70,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "在实体关系方面，用户与预约记录之间是一对多的关系（一个用户可对应多条预约记录），座位与预约记录之间也是一对多的关系（一个座位在不同日期和不冲突的时段下可对应多条预约记录）。学生统计实体则是对用户预约行为的汇总映射。"
+    },
+    {
+      "paragraph": 71,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "4.3.2 逻辑结构设计 系统数据库主要包含四张核心数据表。各表的核心字段设计如下。"
+    },
+    {
+      "paragraph": 72,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "（1）用户表设计"
+    },
+    {
+      "paragraph": 73,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "| 字段名 | 类型 | 说明 | |--------|------|------| | id | bigint | 用户主键 | | name | varchar | 用户姓名 | | email | varchar | 邮箱，唯一 | "
+    },
+    {
+      "paragraph": 74,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "用户表承担身份识别与角色区分功能，其中邮箱字段用于唯一性校验，password字段以加密形式保存，避免明文泄露。"
+    },
+    {
+      "paragraph": 75,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "（2）座位表设计"
+    },
+    {
+      "paragraph": 76,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "| 字段名 | 类型 | 说明 | |--------|------|------| | id | bigint | 座位主键 | | seat_id | varchar | 业务座位编号，如A-1 | | seat_row | varch"
+    },
+    {
+      "paragraph": 77,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "座位表并不直接存储所有时段的占用细节，而是保留当前座位的概要状态和最近预约信息，方便前端快速展示和后台管理。"
+    },
+    {
+      "paragraph": 78,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "（3）预约记录表设计"
+    },
+    {
+      "paragraph": 79,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "| 字段名 | 类型 | 说明 | |--------|------|------| | id | bigint | 预约记录主键 | | seat_id | varchar | 座位编号 | | user_id | varchar | 用"
+    },
+    {
+      "paragraph": 80,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "预约记录表是整个系统中最为关键的数据表。系统通过该表完成时间区间冲突判定、个人记录查询和统计分析，因此需要同时保存日期、起止时间和状态等信息。"
+    },
+    {
+      "paragraph": 81,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "（4）学生统计表设计"
+    },
+    {
+      "paragraph": 82,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "| 字段名 | 类型 | 说明 | |--------|------|------| | id | bigint | 统计记录主键 | | student_id | bigint | 学生编号 | | student_name | varc"
+    },
+    {
+      "paragraph": 83,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "该表属于汇总型数据表，主要用于后台的统计展示和排行榜功能。"
+    },
+    {
+      "paragraph": 84,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "4.4 业务流程设计 业务流程图如下图 4.4所示。"
+    },
+    {
+      "paragraph": 85,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "图 4.4 业务流程图 4.4.1 用户预约业务流程设计 用户预约流程可以概括为：用户登录系统后进入座位预约页面，选择预约日期；系统读取目标日期下的座位状态和已预约时段；用户选择某个座位和起止时间后提交预约请求；后端对参数完整性、时间合法性"
+    },
+    {
+      "paragraph": 86,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "这个流程的关键在于\"前端预判+后端最终校验\"的双层控制。前端预判的作用是提升交互体验、减少无效点击；后端最终校验的作用是保证业务正确性——即使前端状态滞后或被绕过，也能防止出现重复预约。"
+    },
+    {
+      "paragraph": 87,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "4.4.2 取消预约业务流程设计 取消预约的流程主要包括预约记录定位、状态更新、座位状态重计算和广播通知。系统支持按bookingId取消，这是更稳妥的方式，因为它可以直接定位到唯一的预约记录；同时系统也保留了基于座位编号、日期和时间段的兼"
+    },
+    {
+      "paragraph": 88,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "这一设计说明，取消预约不是单纯地删除一条记录，而是一个需要维护状态一致性的联动过程。"
+    },
+    {
+      "paragraph": 89,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "4.4.3 管理员管理业务流程设计 管理员的管理流程以后台控制台为核心。管理员登录系统后，通过仪表盘查看系统总览；在预约管理中筛选和查看预约记录；在用户管理中维护用户信息；在座位管理中初始化和重置座位；在统计页面中查看学生维度和系统维度的数"
+    },
+    {
+      "paragraph": 90,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "4.5 接口设计 在前后端分离架构下，接口设计的质量直接影响系统的协同效率。本系统的接口整体采用REST风格，围绕认证、座位、统计和用户四类资源进行划分。这样的划分方式具有较好的可理解性：前端调用接口时能够清晰地判断资源的归属，后端维护代码"
+    },
+    {
+      "paragraph": 91,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "从接口参数的设计来看，座位预约接口采用`seatId + userId + date + startTime + endTime`的组合方式，而不是单纯传递固定时段编号。这样做的好处是灵活性更强，便于适配半小时粒度甚至未来更细粒度的预约方式"
+    },
+    {
+      "paragraph": 92,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [
+        "进一步"
+      ],
+      "repeated_start": false,
+      "text_preview": "另外，本系统接口的返回结果大多采用bool标记与消息提示相结合的方式。对于本科毕业设计而言，这种设计足以满足演示和功能实现的需要；不过如果系统未来需要在可扩展性和前后端协同稳定性方面有所提升，应考虑进一步统一响应结构（例如增加错误码、详细状"
+    },
+    {
+      "paragraph": 93,
+      "score": 1,
+      "risk": "low",
+      "patterns": [
+        "summary_tail"
+      ],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "4.6 本章小结 本章完成了系统总体设计的工作，主要包括体系结构设计、模块划分、数据库设计、业务流程设计和接口设计分析。通过这些设计可以看出，本系统并非简单地将若干页面和若干接口拼接在一起，而是沿着\"资源—规则—状态—管理\"这条主线逐步展开"
+    },
+    {
+      "paragraph": 94,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "5 系统详细设计与实现 5.1 用户认证模块实现 5.1.1 注册与登录接口实现 系统后端通过`/api/auth/register`和`/api/auth/login`两个接口完成注册与登录功能。注册时，后端先检查邮箱是否已存在；若不存在"
+    },
+    {
+      "paragraph": 95,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "从实现层面来看，该方案在毕业设计场景下有较好的教学与演示价值。系统实现了密码的加密存储，避免了明文泄露的风险；令牌结构保持轻量，便于前后端快速联调。但该令牌并非标准的JWT，其校验逻辑比较简化，更适合作为原型实现，不宜直接用于生产环境。"
+    },
+    {
+      "paragraph": 96,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "注册页面如下图5.1所示。"
+    },
+    {
+      "paragraph": 97,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "图 5.1 用户注册界面 5.1.2 前端登录状态管理实现 前端通过Pinia维护用户信息、令牌、角色判断和加载状态。用户登录成功后，系统根据\"记住我\"选项将令牌保存到`localStorage`或`sessionStorage`中，页面刷"
+    },
+    {
+      "paragraph": 98,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [
+        "进一步"
+      ],
+      "repeated_start": false,
+      "text_preview": "路由守卫承担页面访问控制的职责。当用户访问需要登录的页面时，系统先检查本地是否存在有效的用户信息；如果访问的是管理员页面，则进一步判断角色是否为`ADMIN`。这说明本系统当前采用的是\"后端提供基本认证能力，前端负责页面级访问约束\"的混合方"
+    },
+    {
+      "paragraph": 99,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "登录界面如下图5.2所示。"
+    },
+    {
+      "paragraph": 100,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "图 5.2 用户登录界面 5.2 座位预约模块实现 5.2.1 座位初始化与座位布局实现 在系统后端，`initializeSeats()`方法负责按照固定规则生成默认座位布局：行号为A至E，列号为1至8，共40个座位。系统通过`seatI"
+    },
+    {
+      "paragraph": 101,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "前端页面中，座位按行列方式渲染，配合不同颜色和提示文本，向用户展示可预约、部分占用、本人已预约和已满等不同状态。与列表式展示相比，网格式布局更符合图书馆座位的实际空间认知习惯，能降低用户的理解成本。"
+    },
+    {
+      "paragraph": 102,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "座位预约界面如下图5.3所示。"
+    },
+    {
+      "paragraph": 103,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [
+        "进一步"
+      ],
+      "repeated_start": false,
+      "text_preview": "图 5.3 用户座位预约界面 5.2.2 预约时间规则实现 系统将可预约时间限制在08:00至22:00之间，时间粒度为30分钟。前端在生成时间下拉选项时按照半小时递增构造时间点序列；后端在处理预约请求时，进一步校验起止时间是否满足以下条件"
+    },
+    {
+      "paragraph": 104,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "双端规则控制有助于在体验和正确性之间取得平衡。如果只在前端控制，用户可以通过直接请求接口来绕过规则；如果只在后端控制，用户虽然不会产生错误数据，但在前端交互阶段会频繁遭遇失败提示，体验会受影响。"
+    },
+    {
+      "paragraph": 105,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "5.2.3 预约冲突检测实现 预约冲突控制是本系统最核心的实现问题。系统采用时间区间重叠判定方法，对同一座位、同一日期、状态为`BOOKED`的预约记录进行冲突检测。当存在已有预约满足\"已有开始时间 新预约开始时间\"时，即可认定两个时间区间"
+    },
+    {
+      "paragraph": 106,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "这一判定逻辑可以抽象为：若`start_old start_new`，则旧预约与新预约之间存在交叠区间。该方法的优点是不依赖固定时间槽，可以适配任意符合粒度要求的起止时间组合，系统灵活性较高。与\"预定义若干固定时段\"的粗粒度方案相比，区间重"
+    },
+    {
+      "paragraph": 107,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "5.2.4 取消预约与状态回滚实现 预约取消后，系统并不直接将座位状态机械地恢复为可用，而是调用状态刷新逻辑重新判断该座位在当前日期和未来日期上的预约情况：如果当天仍存在其他有效预约，座位状态维持为`BOOKED`；如果当天没有预约但未来还"
+    },
+    {
+      "paragraph": 108,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "这种处理方式体现了\"记录状态\"与\"资源状态\"分离建模的思路。预约记录存储的是用户行为的历史，而座位状态展示的是当前资源的概要信息，两者不能简单等同，必须通过重计算来保持一致。"
+    },
+    {
+      "paragraph": 109,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "5.2.5 预约过期处理实现 系统在查询当天座位时，会自动扫描结束时间早于当前时间且状态仍为`BOOKED`的记录，并将其更新为`EXPIRED`。这一机制说明系统不仅处理用户的显式取消操作，也处理因时间自然流逝导致的预约失效。对图书馆场景"
+    },
+    {
+      "paragraph": 110,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "5.3 座位状态实时同步实现 5.3.1 后端广播机制实现 后端WebSocket处理器维护一个线程安全的会话集合：当有客户端建立连接时，将其加入集合；当连接关闭或发送失败时，将其移出。业务层在完成预约、取消或座位重置之后，构造包含`typ"
+    },
+    {
+      "paragraph": 111,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "5.3.2 前端实时更新实现 前端定义了WebSocket管理器，负责连接建立、事件监听、异常处理和断线重连。页面加载后连接到`/ws/seat-status`通道，当收到`seatStatusUpdate`消息时，系统根据座位编号在本地座"
+    },
+    {
+      "paragraph": 112,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "5.4 管理员后台模块实现 5.4.1 首页与预约管理实现 管理员首页展示总用户数、今日预约数、总座位数和使用率等数据，这些指标由后台接口聚合生成。预约管理页面支持按日期、状态和关键字筛选预约记录，并支持对正在生效的预约执行取消操作。这里的"
+    },
+    {
+      "paragraph": 113,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "管理员后台管理界面如下图5.4所示。"
+    },
+    {
+      "paragraph": 114,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "图 5.4 管理员后台管理界面 5.4.2 用户管理实现 用户管理模块通过`/api/users`相关接口完成列表查询、详情查看、新增、修改和删除操作。服务层在创建或更新用户时会处理密码加密和默认角色赋值逻辑，将安全相关的职责保留在后端而非"
+    },
+    {
+      "paragraph": 115,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "用户管理界面如下图5.5所示。"
+    },
+    {
+      "paragraph": 116,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "图 5.5 用户管理界面 5.4.3 座位管理实现 座位管理页面提供座位初始化、刷新和重置状态等功能。当系统中没有座位数据时，可通过初始化接口自动生成40个默认座位；当某一座位状态出现异常时，管理员可以通过重置操作将其恢复为可用状态。这一实"
+    },
+    {
+      "paragraph": 117,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "座位管理界面如下图5.6所示。"
+    },
+    {
+      "paragraph": 118,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "图 5.6 管理员座位管理界面 5.5 学生统计模块实现 5.5.1 统计数据生成机制 学生统计模块围绕用户维度聚合预约数据，统计内容包括预约总数、完成数、取消数、总时长和最近预约日期。当统计表为空时，系统支持从预约记录表重建统计数据，这一"
+    },
+    {
+      "paragraph": 119,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "5.5.2 统计展示与管理价值分析 后台统计页面通过系统总览、列表展示和排行榜三种形式呈现数据。系统总览帮助管理员把握整体的使用情况，学生列表展示个体之间的差异，排行榜则有助于发现高频使用用户。对于图书馆管理而言，统计功能的意义在于为资源配"
+    },
+    {
+      "paragraph": 120,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "5.6 安全性与异常处理实现 本系统在实现过程中体现了若干基础的安全与异常处理思路。在用户认证方面，系统使用BCrypt对密码进行加密，避免了明文存储带来的直接风险。在接口调用方面，前端通过请求拦截器统一附加认证信息，并在收到401状态码时"
+    },
+    {
+      "paragraph": 121,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "从分析的角度看，当前的安全实现偏重\"基础可用\"而非\"严格完备\"。后端虽然引入了Spring Security依赖，但当前配置更偏向开发演示环境，没有对所有接口实施细粒度鉴权；令牌的生成方式也比较简化，尚未具备标准化的签名、过期控制和权限声明"
+    },
+    {
+      "paragraph": 122,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "在异常处理方面，系统已经能够覆盖常见的业务失败场景——预约时间格式错误、时间段冲突、取消目标不存在等——并通过统一的消息文本把反馈传递给前端。这类处理虽然在形式上比较直接，但在业务系统中有实际的意义：它保证了用户在操作失败时能获得可理解的反"
+    },
+    {
+      "paragraph": 123,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "5.7 本章小结 本章结合项目源码，对系统核心模块的实现进行了分析，覆盖了用户认证、座位预约、冲突控制、状态维护、实时同步、后台管理、统计功能以及安全与异常处理。可以明确的一点是：本系统的关键价值不在于功能的数量，而在于关键业务规则已经具备"
+    },
+    {
+      "paragraph": 124,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "6 系统测试与结果分析 6.1 测试环境与测试方法 测试环境如下：前端构建环境为Node.js（通过Vite构建工具），后端构建环境为Maven（JDK 17），运行环境为Spring Boot 3.2.0内嵌Tomcat，数据库采用MyS"
+    },
+    {
+      "paragraph": 125,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "6.2 功能测试 6.2.1 编译与打包测试 前端执行生产构建命令后，系统成功生成dist目录，其中包含`index.html`、CSS和JavaScript静态资源文件。后端执行Maven打包命令后，成功生成`springboot-vue"
+    },
+    {
+      "paragraph": 126,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "6.2.2 用户认证测试 在实际接口验证中，系统通过`/api/auth/register`接口成功注册了测试用户testuser@example.com，返回结果中success=true，用户角色为USER；随后通过`/api/auth"
+    },
+    {
+      "paragraph": 127,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "注册功能测试如下图6.1所示。"
+    },
+    {
+      "paragraph": 128,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "图 6.1 注册功能测试 登录功能测试如下图6.2所示。"
+    },
+    {
+      "paragraph": 129,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "图 6.2 登录功能测试 6.2.3 座位预约与冲突控制测试 系统初始化座位后，统计接口返回总座位数414、可用座位数400、已预约座位数14。随后对座位A-1在2026-05-16日期下发起09:00-10:00的预约，请求成功并返回\"座"
+    },
+    {
+      "paragraph": 130,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "座位预约时间冲突测试如下图6.3所示。"
+    },
+    {
+      "paragraph": 131,
+      "score": 1,
+      "risk": "low",
+      "patterns": [
+        "rigid_sequence"
+      ],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "图 6.3 座位预约时间冲突测试 6.2.4 取消预约与状态回滚测试 在用户查询接口中，系统能够正确返回个人预约记录1条。使用返回的bookingId调用取消接口后，系统返回\"预约已取消\"；再次查询座位统计信息，可用座位数恢复为40，已预约"
+    },
+    {
+      "paragraph": 132,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "用户查询接口测试如下图6.4所示。"
+    },
+    {
+      "paragraph": 133,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "图 6.4 用户查询接口测试 用户预约取消接口测试如下图6.5所示。"
+    },
+    {
+      "paragraph": 134,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "图 6.5 用户查询接口测试 取消预约记录后查询接口测试如下图6.6所示。"
+    },
+    {
+      "paragraph": 135,
+      "score": 1,
+      "risk": "low",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": true,
+      "text_preview": "图 6.6 查询接口测试 6.2.5 WebSocket广播测试 为验证实时同步机制，测试端连接WebSocket通道ws://localhost:8081/ws/seat-status，随后对座位A-1发起8:00-8:30的预约请求。连"
+    },
+    {
+      "paragraph": 136,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "WebSocket连通测试如下图6.7所示。"
+    },
+    {
+      "paragraph": 137,
+      "score": 1,
+      "risk": "low",
+      "patterns": [
+        "summary_tail"
+      ],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "图 6.7 WebSocket连通测试 6.3 测试结果分析 从以上测试结果可以看出，系统已经实现了从身份认证到预约执行、再到状态回滚与广播同步的完整业务闭环。注册和登录测试说明系统具备基本的身份管理能力；预约与冲突测试表明系统能够针对同一"
+    },
+    {
+      "paragraph": 138,
+      "score": 1,
+      "risk": "low",
+      "patterns": [
+        "rigid_sequence"
+      ],
+      "cliche_terms": [
+        "进一步"
+      ],
+      "repeated_start": false,
+      "text_preview": "同时，测试结果也暴露了若干可以进一步优化的方向。第一，当前测试主要基于接口级验证，尚未覆盖高并发场景下的竞态冲突问题。第二，后端认证仍采用简化令牌方案，接口虽然可用，但安全边界不够严格。第三，统计模块能够完成基础汇总，但在预约时长的精细计算"
+    },
+    {
+      "paragraph": 139,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "6.4 存在的问题与改进方向 结合当前的实现和测试结果，系统仍存在以下几个方面的问题。其一，认证机制尚未标准化——系统虽然实现了密码加密和令牌识别，但令牌并非标准JWT，后端接口的权限控制也比较宽松；后续可引入标准JWT过滤器与角色级访问控"
+    },
+    {
+      "paragraph": 140,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "6.5 本章小结 本章基于2026年5月16日的构建与接口验证结果，对系统的主要功能进行了测试分析。测试结果表明，系统已经能够完成普通用户注册登录、座位初始化、预约冲突控制、取消预约和WebSocket状态广播等关键功能，具备比较完整的业务"
+    },
+    {
+      "paragraph": 141,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "7 总结与展望 7.1 所做工作总结 本文围绕\"基于Vue的考研图书馆座位预约系统的设计与实现\"这一课题，结合高校图书馆高频自习与考研备考的实际场景，对图书馆座位预约系统进行了分析、设计与实现。全文从应用背景出发展开讨论，梳理了图书馆座位管"
+    },
+    {
+      "paragraph": 142,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "在系统实现层面，本文将预约冲突控制、状态动态维护和实时同步机制作为分析重点。实践结果表明：基于时间区间重叠判定的冲突检测方法能够适应灵活时段的预约场景；将预约记录状态与座位概要状态分开建模的思路，有助于提高系统状态维护的一致性；通过WebS"
+    },
+    {
+      "paragraph": 143,
+      "score": 1,
+      "risk": "low",
+      "patterns": [
+        "filler_phrase"
+      ],
+      "cliche_terms": [
+        "进一步"
+      ],
+      "repeated_start": false,
+      "text_preview": "7.2 未来工作展望 本文实现的系统仍属于面向本科毕业设计的工程原型，在安全性、规则完备性和数据分析深度等方面还有进一步提升的空间。后续可以围绕标准化鉴权、高并发预约控制、签到违约约束、统计建模细化和多终端联动等方向继续扩展。总体而言，本文"
+    },
+    {
+      "paragraph": 144,
+      "score": 0,
+      "risk": "clear",
+      "patterns": [],
+      "cliche_terms": [],
+      "repeated_start": false,
+      "text_preview": "参考文献 [1] 梁欣,王晓辉,邸春姝,等. 高校图书馆微信公众平台发展现状与趋势调研[J].黑龙江教师发展学院学报,2025,44(03):149-152. [2] 布瓦吉尔·艾力.智能时代高校图书馆预约系统现状分析与效能提升——以喀什大"
+    }
+  ]
+}

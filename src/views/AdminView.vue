@@ -63,7 +63,7 @@
               <div class="hero-kpi">
                 <div><span>总用户</span><strong>{{ totalUsers }}</strong></div>
                 <div><span>今日预约</span><strong>{{ todayBookings }}</strong></div>
-                <div><span>座位总数</span><strong>{{ totalSeats }}</strong></div>
+                <div><span>可用座位</span><strong>{{ available }}</strong></div>
               </div>
             </div>
             <div class="stat-grid">
@@ -395,6 +395,7 @@ const integrityThreshold = ref(0.6)
 const totalUsers = ref(0)
 const todayBookings = ref(0)
 const totalSeats = ref(0)
+const available = ref(0)
 const usageRate = ref(0)
 const recentActivities = ref([])
 const bookings = ref([])
@@ -481,7 +482,8 @@ async function loadSeatStatistics() {
   try {
     const stats = await seatApi.getSeatStatistics()
     totalSeats.value = Number(stats.total || 0)
-    usageRate.value = totalSeats.value > 0 ? Math.round((Number(stats.booked || 0) / totalSeats.value) * 100) : 0
+    available.value = Number(stats.available || 0)
+    usageRate.value = Number(stats.usageRate || 0)
   } catch { /* ignore */ }
 }
 

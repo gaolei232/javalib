@@ -100,16 +100,7 @@ public class SeatController {
 
     @GetMapping("/statistics")
     public ResponseEntity<Map<String, Object>> getSeatStatistics() {
-        Map<String, Object> stats = new HashMap<>();
-        Long available = seatService.getAvailableSeatCount();
-        Long booked = seatService.getBookedSeatCount();
-        Long used = seatService.getUsedSeatCount();
-
-        stats.put("available", available);
-        stats.put("booked", booked);
-        stats.put("used", used);
-        stats.put("total", available + booked + used);
-        return ResponseEntity.ok(stats);
+        return ResponseEntity.ok(seatService.getDashboardStatistics());
     }
 
     @PostMapping
@@ -183,27 +174,27 @@ public class SeatController {
 
             if (success) {
                 response.put("success", true);
-                response.put("message", "搴т綅棰勭害鎴愬姛");
+                response.put("message", "座位预约成功");
                 response.put("seatId", seatId);
                 response.put("date", date);
                 response.put("startTime", startTime);
                 response.put("endTime", endTime);
             } else {
                 response.put("success", false);
-                response.put("message", "璇ユ椂娈靛骇浣嶅凡琚绾︽垨璇锋眰鍙傛暟鏃犳晥");
+                response.put("message", "座位预约失败，该时段已被预约或请求参数无效");
             }
 
             return ResponseEntity.ok(response);
         } catch (DateTimeParseException e) {
             response.put("success", false);
-            response.put("message", "鏃ユ湡鎴栨椂闂存牸寮忛敊璇紝姝ｇ‘鏍煎紡濡傦細date=2026-03-12锛宻tartTime=09:00锛宔ndTime=10:30");
+            response.put("message", "日期或时间格式格式错误");
             return ResponseEntity.badRequest().body(response);
         }
     }
 
     /**
-     * 鎺ㄨ崘鍙栨秷鏂瑰紡锛氭寜 bookingId 鍙栨秷
-     * 璋冪敤绀轰緥锛?     * POST /api/seats/{seatId}/cancel?bookingId=123
+     * 取消预约座位
+     * POST /api/seats/{seatId}/cancel?bookingId=123
      */
     @PostMapping("/{seatId}/cancel")
     public ResponseEntity<Map<String, Object>> cancelBooking(
